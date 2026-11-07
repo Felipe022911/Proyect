@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIDE MEAL · AROUND THE EXPERIENCE</title>
+    <link rel="stylesheet" href="src/output.css">
+</head>
+<body class="bg-[var(--color-surface-bg)] text-main antialiased selection:bg-ladrillo selection:text-crema custom-scrollbar">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 bg-[var(--color-surface-bg)]/95 backdrop-blur-md border-b border-ladrillo/30 transition-colors">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            
+            <!-- Logo & Easter Egg Trigger (Exactamente 7 Clics en la Imagen) -->
+            <div class="flex items-center">
+                <button type="button" onclick="handleLogoClick()" class="focus:outline-none cursor-pointer flex items-center h-10">
+                    <img src="../img/logo.jpg" alt="Hide Meal Logo" class="h-full w-auto object-contain hover:scale-105 transition-transform" />
+                </button>
+            </div>
+
+            <!-- Menú Navegación Desktop -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
+                <a href="#concepto" class="text-main hover:text-turquesa transition-colors">El Concepto</a>
+                <a href="#recomendados" class="text-main hover:text-turquesa transition-colors">Recomendados</a>
+                <a href="#experiencias" class="text-main hover:text-turquesa transition-colors">Experiencias (+16)</a>
+            </nav>
+
+            <!-- Hamburguesa Checkbox Controller (Pure CSS) -->
+            <label for="menu-toggle" class="md:hidden flex flex-col gap-1.5 cursor-pointer z-50 p-2">
+                <span class="w-6 h-0.5 bg-[var(--color-surface-text)] transition-all"></span>
+                <span class="w-6 h-0.5 bg-[var(--color-surface-text)] transition-all"></span>
+                <span class="w-6 h-0.5 bg-[var(--color-surface-text)] transition-all"></span>
+            </label>
+            <input type="checkbox" id="menu-toggle" class="peer hidden" />
+
+            <!-- Menú Móvil Desplegable -->
+            <div class="peer-checked:flex hidden absolute top-full left-0 w-full bg-[var(--color-surface-bg)]/98 backdrop-blur-xl border-b border-ladrillo/40 flex-col p-6 space-y-4 md:hidden shadow-2xl z-40">
+                <a href="#concepto" class="text-main hover:text-turquesa font-semibold text-base py-2 border-b border-ladrillo/20">El Concepto</a>
+                <a href="#recomendados" class="text-main hover:text-turquesa font-semibold text-base py-2 border-b border-ladrillo/20">Recomendados</a>
+                <a href="#experiencias" class="text-main hover:text-turquesa font-semibold text-base py-2">Experiencias (+16)</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Botón Flotante Global para Reservar (Únicamente en Index) -->
+    <a href="pedido.html" class="fixed bottom-6 right-6 z-40 bg-naranja hover:bg-ladrillo text-crema font-extrabold px-6 py-3.5 rounded-full shadow-2xl shadow-naranja/50 flex items-center gap-2 text-sm tracking-wider uppercase border border-crema/20 hover:scale-105 transition-all duration-300">
+        <span>Reservar Experiencia</span>
+        <span class="text-lg">→</span>
+    </a>
+
+    <!-- Banner Flotante Emergente (Easter Egg Secreto adaptado: Arriba en móvil, Abajo en Desktop) -->
+    <div id="easter-egg-toast" class="hidden fixed top-24 left-6 sm:top-auto sm:bottom-6 sm:left-6 z-50 bg-mostaza text-carbon font-extrabold px-5 py-4 rounded-2xl shadow-2xl border-2 border-carbon items-center gap-3 animate-bounce max-w-sm">
+        <span class="text-2xl">🎁</span>
+        <div>
+            <p class="text-xs uppercase tracking-wider font-bold">¡Easter Egg Desbloqueado!</p>
+            <p class="text-sm">Conseguiste código de descuento: <strong class="underline tracking-widest">HIDE7VIP</strong></p>
+        </div>
+    </div>
+
+    <!-- Main Landing Container -->
+    <main class="space-y-24 md:space-y-32 pb-20">
+
+        <!-- BANNER FULL-SCREEN -->
+        <section class="relative min-h-[calc(100vh-80px)] w-full flex items-center justify-center overflow-hidden bg-black">
+            <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=1600&q=80" alt="Hide Meal Banner Oscuro" class="absolute inset-0 w-full h-full object-cover opacity-35 filter brightness-50">
+            <div class="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/80 to-carbon/40"></div>
+
+            <div class="relative z-10 max-w-5xl mx-auto px-6 text-center space-y-6">
+                <h1 class="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-crema leading-[1.1] tracking-tight drop-shadow-xl">
+                    Gastronomía que rompe la realidad.
+                </h1>
+                
+                <p class="text-base sm:text-xl md:text-2xl text-crema/95 max-w-3xl mx-auto leading-relaxed font-light drop-shadow-lg">
+                    No solo entregamos platillos de autor; llevamos una atmósfera clandestina, maridaje sensorial y narrativa culinaria hasta tu mesa.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 1: RECOMENDADOS -->
+        <section id="recomendados" class="max-w-7xl mx-auto px-6 space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-ladrillo/30 pb-6">
+                <div>
+                    <span class="text-xs uppercase tracking-[0.3em] text-turquesa font-bold">Selección Especial</span>
+                    <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-main">Experiencias Recomendadas</h2>
+                </div>
+                <p class="text-muted text-sm max-w-md font-light">Las 3 preparaciones más aclamadas por nuestros comensales privados esta temporada.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Recomendado 1 -->
+                <div class="bg-surface-card border border-ladrillo/40 rounded-3xl overflow-hidden p-4 shadow-2xl flex flex-col justify-between group hover:border-turquesa transition-all">
+                    <div>
+                        <div class="relative h-60 overflow-hidden rounded-2xl mb-4">
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80" alt="Costillas Bourbon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 bg-naranja text-crema text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Chef's Choice</span>
+                        </div>
+                        <div class="space-y-2 px-2">
+                            <div class="flex justify-between items-start gap-2">
+                                <h3 class="font-heading font-bold text-main text-lg">Costillas St. Louis Ahumadas (500g)</h3>
+                                <span class="font-heading font-extrabold text-mostaza text-xl">$49.900</span>
+                            </div>
+                            <p class="text-xs text-muted font-light">Ahumadas durante 12 horas en maderas nobles, glaseadas con reducción de bourbon de autor.</p>
+                        </div>
+                    </div>
+                    <div class="pt-6">
+                        <a href="pedido.html" class="block text-center w-full bg-naranja hover:bg-ladrillo text-crema font-semibold py-3 rounded-xl text-xs transition-all uppercase tracking-wider">Reservar Experiencia</a>
+                    </div>
+                </div>
+
+                <!-- Recomendado 2 -->
+                <div class="bg-surface-card border border-ladrillo/40 rounded-3xl overflow-hidden p-4 shadow-2xl flex flex-col justify-between group hover:border-turquesa transition-all">
+                    <div>
+                        <div class="relative h-60 overflow-hidden rounded-2xl mb-4">
+                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80" alt="Hamburguesa Trufada" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 bg-mostaza text-carbon text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Top Ventas</span>
+                        </div>
+                        <div class="space-y-2 px-2">
+                            <div class="flex justify-between items-start gap-2">
+                                <h3 class="font-heading font-bold text-main text-lg">Hamburguesa Trufada Secreta</h3>
+                                <span class="font-heading font-extrabold text-mostaza text-xl">$28.900</span>
+                            </div>
+                            <p class="text-xs text-muted font-light">Carne Angus 200g, queso cheddar añejo, mermelada de tocineta y alioli de trufa negra.</p>
+                        </div>
+                    </div>
+                    <div class="pt-6">
+                        <a href="pedido.html" class="block text-center w-full bg-naranja hover:bg-ladrillo text-crema font-semibold py-3 rounded-xl text-xs transition-all uppercase tracking-wider">Reservar Experiencia</a>
+                    </div>
+                </div>
+
+                <!-- Recomendado 3 -->
+                <div class="bg-surface-card border border-ladrillo/40 rounded-3xl overflow-hidden p-4 shadow-2xl flex flex-col justify-between group hover:border-turquesa transition-all">
+                    <div>
+                        <div class="relative h-60 overflow-hidden rounded-2xl mb-4">
+                            <img src="https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=800&q=80" alt="Omakase Roll Box" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 bg-turquesa text-crema text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Exclusivo</span>
+                        </div>
+                        <div class="space-y-2 px-2">
+                            <div class="flex justify-between items-start gap-2">
+                                <h3 class="font-heading font-bold text-main text-lg">Omakase Roll Box (16 Pzas)</h3>
+                                <span class="font-heading font-extrabold text-mostaza text-xl">$48.000</span>
+                            </div>
+                            <p class="text-xs text-muted font-light">Selección del chef con salmón salvaje, atún aleta azul, trufa blanca y caviar tobiko.</p>
+                        </div>
+                    </div>
+                    <div class="pt-6">
+                        <a href="pedido.html" class="block text-center w-full bg-naranja hover:bg-ladrillo text-crema font-semibold py-3 rounded-xl text-xs transition-all uppercase tracking-wider">Reservar Experiencia</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Concepto Section -->
+        <section id="concepto" class="max-w-7xl mx-auto px-6">
+            <div class="bg-surface-card border border-ladrillo/40 rounded-3xl p-8 sm:p-14 relative overflow-hidden">
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-8 space-y-4">
+                        <span class="text-xs uppercase tracking-widest text-turquesa font-bold">Around The Experience</span>
+                        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-main">Más que una entrega, una velada privada.</h2>
+                        <p class="text-muted font-light text-base leading-relaxed">
+                            Cada pedido en HIDE MEAL incluye empaque térmico con precinto de seguridad, playlist ambientada vía QR, instrucciones de emplatado de chef y maridaje de autor recomendado.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-4 flex justify-center lg:justify-end">
+                        <a href="pedido.html" class="bg-mostaza hover:bg-amber-500 text-carbon font-extrabold px-8 py-4 rounded-xl shadow-lg transition-all text-sm tracking-wider uppercase text-center">
+                            Solicitar Servicio Privado
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: TODOS LOS 16 PLATOS -->
+        <section id="experiencias" class="max-w-7xl mx-auto px-6 space-y-12">
+            <div class="text-center space-y-4 max-w-3xl mx-auto">
+                <span class="text-xs uppercase tracking-[0.3em] text-turquesa font-bold">Catálogo Clandestino Completo</span>
+                <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-main">16 Platos & Experiencias de Autor</h2>
+                <p class="text-muted font-light">Todas las opciones disponibles en nuestro checkout encriptado.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                
+                <!-- Plato 1 -->
+                <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
+                    <div>
+                        <div class="relative h-40 overflow-hidden rounded-xl mb-3">
+                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80" alt="Hamburguesa Trufada Secreta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="space-y-1.5 px-1">
+                            <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">1. Hamburguesa Trufada Secreta</h3>
+                            <p class="text-[11px] text-muted line-clamp-2">Carne Angus 200g, queso cheddar añejo, mermelada de tocineta y alioli de trufa negra.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-3 border-t border-ladrillo/20 flex items-center justify-between">
+                        <span class="font-heading text-sm font-extrabold text-mostaza">$28.900</span>
+                        <a href="pedido.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-3 py-1.5 rounded-lg text-[11px] transition-all uppercase tracking-wider">Pedir →</a>
+                    </div>
+                </article>
+
+                <!-- Plato 2 -->
+                <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
+                    <div>
+                        <div class="relative h-40 overflow-hidden rounded-xl mb-3">
+                            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&q=80" alt="Pizza Napolitana Clandestina" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="space-y-1.5 px-1">
+                            <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">2. Pizza Napolitana Clandestina</h3>
+                            <p class="text-[11px] text-muted line-clamp-2">Masa madre fermentada 48h, stracciatella, tomate San Marzano y albahaca fresca.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-3 border-t border-ladrillo/20 flex items-center justify-between">
+                        <span class="font-heading text-sm font-extrabold text-mostaza">$42.000</span>
+                        <a href="pedido.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-3 py-1.5 rounded-lg text-[11px] transition-all uppercase tracking-wider">Pedir →</a>
+                    </div>
+                </article>
+
+                <!-- Plato 3 -->
+                <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
+                    <div>
+                        <div class="relative h-40 overflow-hidden rounded-xl mb-3">
+                            <img src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=500&q=80" alt="Alitas BBQ al Whisky Ahumado" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="space-y-1.5 px-1">
+                            <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">3. Alitas BBQ al Whisky Ahumado</h3>
+                            <p class="text-[11px] text-muted line-clamp-2">Alitas crujientes bañadas en salsa artesanal de whisky añejo y especias ahumadas.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-3 border-t border-ladrillo/20 flex items-center justify-between">
+                        <span class="font-heading text-sm font-extrabold text-mostaza">$32.500</span>
+                        <a href="pedido.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-3 py-1.5 rounded-lg text-[11px] transition-all uppercase tracking-wider">Pedir →</a>
+                    </div>
+                </article>
+
+                <!-- Plato 4 -->
+                <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
+                    <div>
+                        <div class="relative h-40 overflow-hidden rounded-xl mb-3">
+                            <img src="https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=500&q=80" alt="Omakase Roll Box (16 Pzas)" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="space-y-1.5 px-1">
+                            <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">4. Omakase Roll Box (16 Pzas)</h3>
+                            <p class="text-[11px] text-muted line-clamp-2">Combinación de rolls autorales con pesca fresca del día y toques cítricos de yuzu.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-3 border-t border-ladrillo/20 flex items-center justify-between">
+                        <span class="font-heading text-sm font-extrabold text-mostaza">$48.000</span>
+                        <a href="pedido.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-3 py-1.5 rounded-lg text-[11px] transition-all uppercase tracking-wider">Pedir →</a>
+                    </div>
+                </article>
+
+                <!-- Plato 5 -->
+                <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
+                    <div>
+                        <div class="relative h-40 overflow-hidden rounded-xl mb-3">
+                            <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=500&q=80" alt="Tacos de Birria Res Gourmet" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="space-y-1.5 px-1">
+                            <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">5. Tacos de Birria Res Gourmet</h3>
+                            <p class="text-[11px] text-muted line-clamp-2">Tortillas de maíz nixtamalizado, res jugosa en cocción lenta y consomé para sumergir.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-3 border-t border-ladrillo/20 flex items-center justify-between">
+                        <span class="font-heading text-sm font-extrabold text-mostaza">$26.000</span>
+                        <a href="pedido.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-3 py-1.5 rounded-lg text-[11px] transition-all uppercase tracking-wider">Pedir →</a>
+                    </div>
+                </article>
+
+                <!-- Plato 6 -->
+                <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
+                    <div>
+                        <div class="relative h-40 overflow-hidden rounded-xl mb-3">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80" alt="Bowl Silvestre & Pollo Orgánico" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="space-y-1.5 px-1">
+                            <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">6. Bowl Silvestre & Pollo Orgánico</h3>
+                            <p class="text-[11px] text-muted line-clamp-2">Quinua silvestre, pechuga a la parrilla, aguacate, vegetales asados y aderezo sésamo.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-3 border-t border-ladrillo/20 flex items-center justify-between">
+                        <span class="font-heading text-sm font-extrabold text-mostaza">$26.500</span>
+                        <a href="pedido.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-3 py-1.5 rounded-lg text-[11px] transition-all uppercase tracking-wider">Pedir →</a>
+                    </div>
+                </article>
+
+                <!-- Plato 7 -->
+                <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
+                    <div>
+                        <div class="relative h-40 overflow-hidden rounded-xl mb-3">
+                            <img src="https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=500&q=80" alt="Waffles Artesanales & Red Fruits" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="space-y-1.5 px-1">
+                            <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">7. Waffles & Red Fruits</h3>
+                            <p class="text-[11px] text-muted line-clamp-2">Waffles dorados con compota casera de frutos rojos, gelée de arándanos y crema batida.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-3 border-t border-ladrillo/20 flex items-center justify-between">
+                        <span class="font-heading text-sm font-extrabold text-mostaza">$18.900</span>
+                        <a href="pedido.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-3 py-1.5 rounded-lg text-[11px] transition-all uppercase tracking-wider">Pedir →</a>
+                    </div>
+                </article>
+
+                <!-- Plato 8 -->
+                <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
+                    <div>
+                        <div class="relative h-40 overflow-hidden rounded-xl mb-3">
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=80" alt="Costillas St. Louis Ahumadas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="space-y-1.5 px-1">
+                            <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">8. Costillas St. Louis (500g)</h3>
+                            <p class="text-[11px] text-muted line-clamp-2">Costillas seleccionadas glaseadas al bourbon con acompañamiento de papas rústicas.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-3 border-t border-ladrillo/20 flex items-center justify-between">
+                        <span class="font-heading text-sm font-extrabold text-mostaza">$49.900</span>
+                        <a href="pedido.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-3 py-1.5 rounded-lg text-[11px] transition-all uppercase tracking-wider">Pedir →</a>
+                    </div>
+                </article>
+
+                <!-- Plato 9 -->
+                <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
+                    <div>
+                        <div class="relative h-40 overflow-hidden rounded-xl mb-3">
+                            <img src="https://images.unsplash.com/photo-1621996346565-e3d5d6281288?w=500&q=80" alt="Fettuccine Alfredo con Camarones" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="space-y-1.5 px-1">
+                            <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">9. Fettuccine Alfredo Camarones</h3>
+                            <p class="text-[11px] text-muted line-clamp-2">Pasta artesanal, crema de queso parmesano reggiano de 24 meses y camarones salteados.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-3 border-t border-ladrillo/20 flex items-center justify-between">
+                        <span class="font-heading text-sm font-extrabold text-mostaza">$33.000</span>
+                        <a href="pedido.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-3 py-1.5 rounded-lg text-[11px] transition-all uppercase tracking-wider">Pedir →</a>
+                    </div>
+                </article>
+
+                <!-- Plato 10 -->
+                <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
+                    <div>
+                        <div class="relative h-40 overflow-hidden rounded-xl mb-3">
+                            <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500&q=80" alt="Ramen Tonkotsu Secreto" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="space-y-1.5 px-1">
+                            <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">10. Ramen Tonkotsu Secreto</h3>
+                            <p class="text-[11px] text-muted line-clamp-2">Caldo denso reducido por 18h, fideos artesanales, chashu de cerdo y huevo ajitsuke.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-3 border-t border-ladrillo/20 flex items-center justify-between">
+                        <span class="font-heading text-sm font-extrabold text-mostaza">$36.000</span>
+                        <a href="pedido.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-3 py-1.5 rounded-lg text-[11px] transition-all uppercase tracking-wider">Pedir →</a>
+                    </div>
+                </article>
+
+                <!-- Plato 11 -->
+                <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
+                    <div>
+                        <div class="relative h-40 overflow-hidden rounded-xl mb-3">
+                            <img src="https://images.unsplash.com/photo-1509722747041-616f39b57569?w=500&q=80" alt="Sandwich Brioche Pastrami" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="space-y-1.5 px-1">
+                            <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">11. Sandwich Brioche Pastrami</h3>
+                            <p class="text-[11px] text-muted line-clamp-2">Pan brioche de mantequilla, pastrami curado de la casa, pepinillos y mostaza antigua.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-3 border-t border-ladrillo/20 flex items-center justify-between">
+                        <span class="font-heading text-sm font-extrabold text-mostaza">$24.000</span>
+                        <a href="pedido.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-3 py-1.5 rounded-lg text-[11px] transition-all uppercase tracking-wider">Pedir →</a>
+                    </div>
+                </article>
+
+                <!-- Plato 12 -->
+                <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
+                    <div>
+                        <div class="relative h-40 overflow-hidden rounded-xl mb-3">
+                            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=80" alt="Ensalada César Ahumada" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="space-y-1.5 px-1">
+                            <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">12. Ensalada César Ahumada</h3>
+                            <p class="text-[11px] text-muted line-clamp-2">Lechugas romanas a la parrilla, crotones de ajo negro, lonchas de panceta y aderezo césar.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-3 border-t border-ladrillo/20 flex items-center justify-between">
+                        <span class="font-heading text-sm font-extrabold text-mostaza">$23.500</span>
+                        <a href="pedido.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-3 py-1.5 rounded-lg text-[11px] transition-all uppercase tracking-wider">Pedir →</a>
+                    </div>
+                </article>
+
+                <!-- Plato 13 -->
+                <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
+                    <div>
+                        <div class="relative h-40 overflow-hidden rounded-xl mb-3">
+                            <img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=500&q=80" alt="Gyozas de Cerdo & Jengibre" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="space-y-1.5 px-1">
+                            <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">13. Gyozas de Cerdo & Jengibre</h3>
+                            <p class="text-[11px] text-muted line-clamp-2">Empanaditas al vapor y selladas a la plancha, acompañadas de salsa ponzu picante.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-3 border-t border-ladrillo/20 flex items-center justify-between">
+                        <span class="font-heading text-sm font-extrabold text-mostaza">$19.900</span>
+                        <a href="pedido.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-3 py-1.5 rounded-lg text-[11px] transition-all uppercase tracking-wider">Pedir →</a>
+                    </div>
+                </article>
+
+                <!-- Plato 14 -->
+                <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
+                    <div>
+                        <div class="relative h-40 overflow-hidden rounded-xl mb-3">
+                            <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500&q=80" alt="Brownie Lava de Chocolate 70%" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="space-y-1.5 px-1">
+                            <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">14. Brownie Lava Chocolate 70%</h3>
+                            <p class="text-[11px] text-muted line-clamp-2">Volcán tibio de cacao ecuatoriano con centro fluido y sal marina de Maldon.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-3 border-t border-ladrillo/20 flex items-center justify-between">
+                        <span class="font-heading text-sm font-extrabold text-mostaza">$15.500</span>
+                        <a href="pedido.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-3 py-1.5 rounded-lg text-[11px] transition-all uppercase tracking-wider">Pedir →</a>
+                    </div>
+                </article>
+
+                <!-- Plato 15 -->
+                <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
+                    <div>
+                        <div class="relative h-40 overflow-hidden rounded-xl mb-3">
+                            <img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?w=500&q=80" alt="Crepe Serrano, Brie & Trufa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="space-y-1.5 px-1">
+                            <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">15. Crepe Serrano, Brie & Trufa</h3>
+                            <p class="text-[11px] text-muted line-clamp-2">Masa delgada francesa con jamón serrano reserva, queso brie fundido y miel trufada.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-3 border-t border-ladrillo/20 flex items-center justify-between">
+                        <span class="font-heading text-sm font-extrabold text-mostaza">$27.000</span>
+                        <a href="pedido.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-3 py-1.5 rounded-lg text-[11px] transition-all uppercase tracking-wider">Pedir →</a>
+                    </div>
+                </article>
+
+                <!-- Plato 16 -->
+                <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
+                    <div>
+                        <div class="relative h-40 overflow-hidden rounded-xl mb-3">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80" alt="Poke Bowl Salmón & Mango" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="space-y-1.5 px-1">
+                            <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">16. Poke Bowl Salmón & Mango</h3>
+                            <p class="text-[11px] text-muted line-clamp-2">Cubos de salmón fresco, edamame, mango maduro, algas wakame y mayo sriracha.</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-3 border-t border-ladrillo/20 flex items-center justify-between">
+                        <span class="font-heading text-sm font-extrabold text-mostaza">$38.900</span>
+                        <a href="pedido.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-3 py-1.5 rounded-lg text-[11px] transition-all uppercase tracking-wider">Pedir →</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-ladrillo/30 bg-black/40 py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex flex-col items-center md:items-start">
+                <span class="font-heading text-xl font-bold tracking-widest text-main">HIDE MEAL</span>
+                <span class="text-xs text-turquesa uppercase tracking-widest">Around The Experience © 2026</span>
+            </div>
+            <div class="flex items-center gap-6 text-sm text-muted">
+                <a href="#concepto" class="hover:text-turquesa transition-colors">Concepto</a>
+                <a href="#experiencias" class="hover:text-turquesa transition-colors">Menú</a>
+                <a href="pedido.html" class="text-naranja font-semibold hover:text-mostaza transition-colors">Hacer Pedido ↗</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lógica Easter Egg (Exactamente 7 Clics en la Imagen del Logo) -->
+    <script>
+        let logoClicks = 0;
+        function handleLogoClick() {
+            logoClicks++;
+            if (logoClicks === 7) {
+                const toast = document.getElementById('easter-egg-toast');
+                toast.classList.remove('hidden');
+                toast.classList.add('flex');
+            }
+        }
+    </script>
+
+</body>
+</html>
