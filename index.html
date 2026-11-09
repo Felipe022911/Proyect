@@ -6,24 +6,24 @@
     <title>HIDE MEAL · AROUND THE EXPERIENCE</title>
     <link rel="stylesheet" href="src/output.css">
 </head>
-<body class="bg-[var(--color-surface-bg)] text-main antialiased selection:bg-ladrillo selection:text-crema custom-scrollbar">
+<body class="bg-(--color-surface-bg) text-main antialiased selection:bg-ladrillo selection:text-crema custom-scrollbar">
 
     <!-- Header / Navbar -->
-    <header class="sticky top-0 z-50 bg-[var(--color-surface-bg)]/95 backdrop-blur-md border-b border-ladrillo/30 transition-colors">
+    <header class="sticky top-0 z-50 bg-(--color-surface-bg)/95 backdrop-blur-md border-b border-ladrillo/30 transition-colors">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             
             <!-- Logo & Easter Egg Trigger (Exactamente 7 Clics en la Imagen) -->
             <div class="flex items-center">
                 <button type="button" onclick="handleLogoClick()" class="focus:outline-none cursor-pointer flex items-center h-10">
-                    <img src="../img/logo.jpg" alt="Hide Meal Logo" class="h-full w-auto object-contain hover:scale-105 transition-transform" />
+                    <img src="src/img/logo.png" alt="Hide Meal Logo" class="h-full w-auto object-contain hover:scale-105 transition-transform" />
                 </button>
             </div>
-
+            
             <!-- Menú Navegación Desktop -->
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
-                <a href="#concepto" class="text-main hover:text-turquesa transition-colors">El Concepto</a>
-                <a href="#recomendados" class="text-main hover:text-turquesa transition-colors">Recomendados</a>
-                <a href="#experiencias" class="text-main hover:text-turquesa transition-colors">Experiencias (+16)</a>
+                <a href="#concepto" class="text-main hover:text-turquesa transition-colors hover:scale-105">El Concepto</a>
+                <a href="#recomendados" class="text-main hover:text-turquesa transition-colors hover:scale-105 transition-all">Recomendados</a>
+                <a href="#experiencias" class="text-main hover:text-turquesa transition-colors hover:scale-105 transition-all">Experiencias</a>
             </nav>
 
             <!-- Hamburguesa Checkbox Controller (Pure CSS) -->
@@ -36,9 +36,9 @@
 
             <!-- Menú Móvil Desplegable -->
             <div class="peer-checked:flex hidden absolute top-full left-0 w-full bg-[var(--color-surface-bg)]/98 backdrop-blur-xl border-b border-ladrillo/40 flex-col p-6 space-y-4 md:hidden shadow-2xl z-40">
-                <a href="#concepto" class="text-main hover:text-turquesa font-semibold text-base py-2 border-b border-ladrillo/20">El Concepto</a>
-                <a href="#recomendados" class="text-main hover:text-turquesa font-semibold text-base py-2 border-b border-ladrillo/20">Recomendados</a>
-                <a href="#experiencias" class="text-main hover:text-turquesa font-semibold text-base py-2">Experiencias (+16)</a>
+                <a href="#concepto" class="text-main hover:text-turquesa font-semibold text-base py-2 border-b border-ladrillo/20 transition-colors">El concepto</a>
+                <a href="#recomendados" class="text-main hover:text-turquesa font-semibold text-base py-2 border-b border-ladrillo/20 transition-colors">Recomendados</a>
+                <a href="#experiencias" class="text-main hover:text-turquesa font-semibold text-base py-2 border-b border-ladrillo/20 transition-colors">Experiencias</a>
             </div>
         </div>
     </header>
@@ -63,8 +63,8 @@
 
         <!-- BANNER FULL-SCREEN -->
         <section class="relative min-h-[calc(100vh-80px)] w-full flex items-center justify-center overflow-hidden bg-black">
-            <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=1600&q=80" alt="Hide Meal Banner Oscuro" class="absolute inset-0 w-full h-full object-cover opacity-35 filter brightness-50">
-            <div class="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/80 to-carbon/40"></div>
+            <img src="src/img/banner.jpg" alt="Hide Meal Banner Oscuro" class="absolute inset-0 w-full h-full object-cover opacity-35 filter brightness-50">
+            <div class="absolute inset-0 bg-linear-to-t from-carbon via-carbon/80 to-carbon/40"></div>
 
             <div class="relative z-10 max-w-5xl mx-auto px-6 text-center space-y-6">
                 <h1 class="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-crema leading-[1.1] tracking-tight drop-shadow-xl">
@@ -92,7 +92,7 @@
                 <div class="bg-surface-card border border-ladrillo/40 rounded-3xl overflow-hidden p-4 shadow-2xl flex flex-col justify-between group hover:border-turquesa transition-all">
                     <div>
                         <div class="relative h-60 overflow-hidden rounded-2xl mb-4">
-                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80" alt="Costillas Bourbon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="src/img/costillas.jpg" alt="Costillas St. Louis" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute top-4 left-4 bg-naranja text-crema text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Chef's Choice</span>
                         </div>
                         <div class="space-y-2 px-2">
@@ -112,7 +112,7 @@
                 <div class="bg-surface-card border border-ladrillo/40 rounded-3xl overflow-hidden p-4 shadow-2xl flex flex-col justify-between group hover:border-turquesa transition-all">
                     <div>
                         <div class="relative h-60 overflow-hidden rounded-2xl mb-4">
-                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80" alt="Hamburguesa Trufada" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="src/img/hamburguesa.jpg" alt="Hamburguesa Trufada" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute top-4 left-4 bg-mostaza text-carbon text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Top Ventas</span>
                         </div>
                         <div class="space-y-2 px-2">
@@ -132,7 +132,7 @@
                 <div class="bg-surface-card border border-ladrillo/40 rounded-3xl overflow-hidden p-4 shadow-2xl flex flex-col justify-between group hover:border-turquesa transition-all">
                     <div>
                         <div class="relative h-60 overflow-hidden rounded-2xl mb-4">
-                            <img src="https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=800&q=80" alt="Omakase Roll Box" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="src/img/omakase.jpg" alt="Omakase Roll Box" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute top-4 left-4 bg-turquesa text-crema text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Exclusivo</span>
                         </div>
                         <div class="space-y-2 px-2">
@@ -184,7 +184,7 @@
                 <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
                     <div>
                         <div class="relative h-40 overflow-hidden rounded-xl mb-3">
-                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80" alt="Hamburguesa Trufada Secreta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="src/img/hamburguesa.jpg" alt="Hamburguesa Trufada Secreta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="space-y-1.5 px-1">
                             <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">1. Hamburguesa Trufada Secreta</h3>
@@ -201,7 +201,7 @@
                 <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
                     <div>
                         <div class="relative h-40 overflow-hidden rounded-xl mb-3">
-                            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&q=80" alt="Pizza Napolitana Clandestina" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="src/img/napolitana.jpg" alt="Pizza Napolitana Clandestina" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="space-y-1.5 px-1">
                             <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">2. Pizza Napolitana Clandestina</h3>
@@ -218,7 +218,7 @@
                 <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
                     <div>
                         <div class="relative h-40 overflow-hidden rounded-xl mb-3">
-                            <img src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=500&q=80" alt="Alitas BBQ al Whisky Ahumado" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="src/img/alitas.jpg" alt="Alitas BBQ al Whisky Ahumado" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="space-y-1.5 px-1">
                             <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">3. Alitas BBQ al Whisky Ahumado</h3>
@@ -235,7 +235,7 @@
                 <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
                     <div>
                         <div class="relative h-40 overflow-hidden rounded-xl mb-3">
-                            <img src="https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=500&q=80" alt="Omakase Roll Box (16 Pzas)" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="src/img/omakase.jpg" alt="Omakase Roll Box (16 Pzas)" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="space-y-1.5 px-1">
                             <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">4. Omakase Roll Box (16 Pzas)</h3>
@@ -252,7 +252,7 @@
                 <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
                     <div>
                         <div class="relative h-40 overflow-hidden rounded-xl mb-3">
-                            <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=500&q=80" alt="Tacos de Birria Res Gourmet" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="src/img/tacos.jpg.webp" alt="Tacos de Birria Res Gourmet" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="space-y-1.5 px-1">
                             <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">5. Tacos de Birria Res Gourmet</h3>
@@ -269,7 +269,7 @@
                 <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
                     <div>
                         <div class="relative h-40 overflow-hidden rounded-xl mb-3">
-                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80" alt="Bowl Silvestre & Pollo Orgánico" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="src/img/bowl.jpg" alt="Bowl Silvestre & Pollo Orgánico" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="space-y-1.5 px-1">
                             <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">6. Bowl Silvestre & Pollo Orgánico</h3>
@@ -286,7 +286,7 @@
                 <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
                     <div>
                         <div class="relative h-40 overflow-hidden rounded-xl mb-3">
-                            <img src="https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=500&q=80" alt="Waffles Artesanales & Red Fruits" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="src/img/waffle.jpg" alt="Waffles Artesanales & Red Fruits" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="space-y-1.5 px-1">
                             <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">7. Waffles & Red Fruits</h3>
@@ -303,7 +303,7 @@
                 <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
                     <div>
                         <div class="relative h-40 overflow-hidden rounded-xl mb-3">
-                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=80" alt="Costillas St. Louis Ahumadas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="src/img/costillas.jpg" alt="Costillas St. Louis Ahumadas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="space-y-1.5 px-1">
                             <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">8. Costillas St. Louis (500g)</h3>
@@ -320,7 +320,7 @@
                 <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
                     <div>
                         <div class="relative h-40 overflow-hidden rounded-xl mb-3">
-                            <img src="https://images.unsplash.com/photo-1621996346565-e3d5d6281288?w=500&q=80" alt="Fettuccine Alfredo con Camarones" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="src/img/fettuchini.jpg" alt="Fettuccine Alfredo con Camarones" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="space-y-1.5 px-1">
                             <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">9. Fettuccine Alfredo Camarones</h3>
@@ -337,7 +337,7 @@
                 <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
                     <div>
                         <div class="relative h-40 overflow-hidden rounded-xl mb-3">
-                            <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500&q=80" alt="Ramen Tonkotsu Secreto" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="src/img/ramen.jpg" alt="Ramen Tonkotsu Secreto" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="space-y-1.5 px-1">
                             <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">10. Ramen Tonkotsu Secreto</h3>
@@ -354,7 +354,7 @@
                 <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
                     <div>
                         <div class="relative h-40 overflow-hidden rounded-xl mb-3">
-                            <img src="https://images.unsplash.com/photo-1509722747041-616f39b57569?w=500&q=80" alt="Sandwich Brioche Pastrami" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="src/img/sandwich.jpg" alt="Sandwich Brioche Pastrami" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="space-y-1.5 px-1">
                             <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">11. Sandwich Brioche Pastrami</h3>
@@ -371,7 +371,7 @@
                 <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
                     <div>
                         <div class="relative h-40 overflow-hidden rounded-xl mb-3">
-                            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=80" alt="Ensalada César Ahumada" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="src/img/cesar.jpg" alt="Ensalada César Ahumada" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="space-y-1.5 px-1">
                             <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">12. Ensalada César Ahumada</h3>
@@ -388,7 +388,7 @@
                 <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
                     <div>
                         <div class="relative h-40 overflow-hidden rounded-xl mb-3">
-                            <img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=500&q=80" alt="Gyozas de Cerdo & Jengibre" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="src/img/gyozas.jpg" alt="Gyozas de Cerdo & Jengibre" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="space-y-1.5 px-1">
                             <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">13. Gyozas de Cerdo & Jengibre</h3>
@@ -405,7 +405,7 @@
                 <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
                     <div>
                         <div class="relative h-40 overflow-hidden rounded-xl mb-3">
-                            <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500&q=80" alt="Brownie Lava de Chocolate 70%" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="src/img/brownie.jpg" alt="Brownie Lava de Chocolate 70%" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="space-y-1.5 px-1">
                             <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">14. Brownie Lava Chocolate 70%</h3>
@@ -422,7 +422,7 @@
                 <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
                     <div>
                         <div class="relative h-40 overflow-hidden rounded-xl mb-3">
-                            <img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?w=500&q=80" alt="Crepe Serrano, Brie & Trufa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="src/img/crepe.jpg" alt="Crepe Serrano, Brie & Trufa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="space-y-1.5 px-1">
                             <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">15. Crepe Serrano, Brie & Trufa</h3>
@@ -439,7 +439,7 @@
                 <article class="bg-surface-card border border-ladrillo/30 rounded-2xl p-4 flex flex-col justify-between hover:border-naranja transition-all group shadow-xl">
                     <div>
                         <div class="relative h-40 overflow-hidden rounded-xl mb-3">
-                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80" alt="Poke Bowl Salmón & Mango" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="src/img/poke.jpg" alt="Poke Bowl Salmón & Mango" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="space-y-1.5 px-1">
                             <h3 class="font-heading text-sm font-bold text-main group-hover:text-turquesa transition-colors">16. Poke Bowl Salmón & Mango</h3>
