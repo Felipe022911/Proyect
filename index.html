@@ -9,45 +9,32 @@
 <body class="bg-(--color-surface-bg) text-main antialiased selection:bg-ladrillo selection:text-crema custom-scrollbar">
 
     <!-- Header / Navbar -->
-    <header class="sticky top-0 z-50 bg-(--color-surface-bg)/95 backdrop-blur-md border-b border-ladrillo/30 transition-colors">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+<header class="sticky top-0 z-50 bg-(--color-surface-bg)/95 backdrop-blur-md border-b border-ladrillo/30 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
             
-            <!-- Logo & Easter Egg Trigger (Exactamente 7 Clics en la Imagen) -->
+            <!-- 1. Izquierda: Logo -->
             <div class="flex items-center">
-                <button type="button" onclick="handleLogoClick()" class="focus:outline-none cursor-pointer flex items-center h-10">
-                    <img src="src/img/logo.png" alt="Hide Meal Logo" class="h-full w-auto object-contain hover:scale-105 transition-transform" />
+                <button type="button" onclick="handleLogoClick()" class="focus:outline-none cursor-pointer flex items-center h-8 sm:h-10">
+                    <img src="src/img/logopq.png" alt="Hide Meal Logo" class="h-full w-auto object-contain hover:scale-105 transition-transform" />
                 </button>
             </div>
             
-            <!-- Menú Navegación Desktop -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
-                <a href="#concepto" class="text-main hover:text-turquesa transition-colors hover:scale-105">El Concepto</a>
-                <a href="#recomendados" class="text-main hover:text-turquesa transition-colors hover:scale-105 transition-all">Recomendados</a>
-                <a href="#experiencias" class="text-main hover:text-turquesa transition-colors hover:scale-105 transition-all">Experiencias</a>
+            <!-- 2. Centro: Menú de navegación en Escritorio (Enlaces de texto) -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium tracking-wide">
+                <a href="#concepto" class="text-main hover:text-turquesa transition-colors">El Concepto</a>
+                <a href="#recomendados" class="text-main hover:text-turquesa transition-colors">Recomendados</a>
+                <a href="#experiencias" class="text-main hover:text-turquesa transition-colors">Experiencias</a>
             </nav>
 
-            <!-- Hamburguesa Checkbox Controller (Pure CSS) -->
-            <label for="menu-toggle" class="md:hidden flex flex-col gap-1.5 cursor-pointer z-50 p-2">
-                <span class="w-6 h-0.5 bg-[var(--color-surface-text)] transition-all"></span>
-                <span class="w-6 h-0.5 bg-[var(--color-surface-text)] transition-all"></span>
-                <span class="w-6 h-0.5 bg-[var(--color-surface-text)] transition-all"></span>
-            </label>
-            <input type="checkbox" id="menu-toggle" class="peer hidden" />
+            <!-- 3. Derecha: Botón "Vende con nosotros" -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Botón con tamaño de letra equilibrado y refinado -->
+                <a href="pedido.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-3.5 py-3 sm:px-4 sm:py-3 rounded-full shadow-lg flex items-center gap-2 text-[11px] sm:text-xs tracking-wider uppercase border border-crema/20 hover:scale-105 transition-all duration-300">
+                    <span>Vende con nosotros</span>
+            </a>
 
-            <!-- Menú Móvil Desplegable -->
-            <div class="peer-checked:flex hidden absolute top-full left-0 w-full bg-[var(--color-surface-bg)]/98 backdrop-blur-xl border-b border-ladrillo/40 flex-col p-6 space-y-4 md:hidden shadow-2xl z-40">
-                <a href="#concepto" class="text-main hover:text-turquesa font-semibold text-base py-2 border-b border-ladrillo/20 transition-colors">El concepto</a>
-                <a href="#recomendados" class="text-main hover:text-turquesa font-semibold text-base py-2 border-b border-ladrillo/20 transition-colors">Recomendados</a>
-                <a href="#experiencias" class="text-main hover:text-turquesa font-semibold text-base py-2">Experiencias</a>
-            </div>
-        </div>
+
     </header>
-
-    <!-- Botón Flotante Global para Reservar (Únicamente en Index) -->
-    <a href="pedido.html" class="fixed bottom-6 right-6 z-40 bg-naranja hover:bg-ladrillo text-crema font-extrabold px-6 py-3.5 rounded-full shadow-2xl shadow-naranja/50 flex items-center gap-2 text-sm tracking-wider uppercase border border-crema/20 hover:scale-105 transition-all duration-300">
-        <span>Vende con nosotros</span>
-        <span class="text-lg">→</span>
-    </a>
 
     <!-- Banner Flotante Emergente (Easter Egg Secreto adaptado: Arriba en móvil, Abajo en Desktop) -->
     <div id="easter-egg-toast" class="hidden fixed top-24 left-6 sm:top-auto sm:bottom-6 sm:left-6 z-50 bg-mostaza text-carbon font-extrabold px-5 py-4 rounded-2xl shadow-2xl border-2 border-carbon items-center gap-3 animate-bounce max-w-sm">
@@ -59,7 +46,7 @@
     </div>
 
     <!-- Main Landing Container -->
-    <main class="space-y-24 md:space-y-32 pb-20">
+    <main class="space-y-24 md:space-y-32 pb-28">
 
         <!-- BANNER FULL-SCREEN -->
         <section class="relative min-h-[calc(100vh-80px)] w-full flex items-center justify-center overflow-hidden bg-black">
@@ -470,6 +457,25 @@
             </div>
         </div>
     </footer>
+
+    <nav class="md:hidden w-full bg-[var(--color-surface-bg)]/95 backdrop-blur-md border-t border-ladrillo/30 px-6 py-2.5 flex justify-between items-center text-xs" style="position: fixed; bottom: 0; left: 0; z-index: 9999;">
+    <a href="index.html" class="flex flex-col items-center text-naranja font-bold gap-1">
+            <span class="text-lg">🏠</span>
+            <span>Inicio</span>
+        </a>
+        <a href="#experiencias" class="flex flex-col items-center text-muted hover:text-main gap-1">
+            <span class="text-lg">🍽️</span>
+            <span>Menú</span>
+        </a>
+        <a href="pedido.html" class="flex flex-col items-center text-muted hover:text-main gap-1">
+            <span class="text-lg">🛒</span>
+            <span>Carrito</span>
+        </a>
+        <a href="pedido.html" class="flex flex-col items-center text-muted hover:text-main gap-1">
+            <span class="text-lg">👤</span>
+            <span>Mi Cuenta</span>
+        </a>
+    </nav>
 
     <!-- Lógica Easter Egg (Exactamente 7 Clics en la Imagen del Logo) -->
     <script>
