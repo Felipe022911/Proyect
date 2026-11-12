@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrate | HIDE MEAL · AROUND THE EXPERIENCE</title>
+    <link rel="stylesheet" href="src/output.css">
+</head>
+<body class="bg-[var(--color-surface-bg)] text-main min-h-screen flex flex-col justify-between selection:bg-ladrillo selection:text-crema">
+
+    <header class="border-b border-ladrillo/30 bg-[var(--color-surface-bg)]/95 py-5 px-6 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            
+            <div class="flex items-center">
+                <button type="button"onclick="handleLogoClick()" class="focus:outline-none cursor-pointer flex items-center h-10">
+                    <img src="src/img/logo.png" alt="Hide Meal Logo" class="h-full w-auto object-contain hover:scale-105 transition-transform" />
+                </button>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-4">
+                <a href="index.html#concepto" class="text-xs text-muted hover:text-turquesa transition-colors">El Concepto</a>
+                <a href="index.html#experiencias" class="text-xs text-muted hover:text-turquesa transition-colors">Experiencias</a>
+                <a href="index.html" class="text-xs text-muted hover:text-turquesa transition-colors font-medium flex items-center gap-1">← Volver al Inicio</a>
+            </div>
+
+            <label for="menu-toggle-pedido" class="md:hidden flex flex-col gap-1.5 cursor-pointer z-50 p-2">
+                <span class="w-6 h-0.5 bg-[var(--color-surface-text)] transition-all"></span>
+                <span class="w-6 h-0.5 bg-[var(--color-surface-text)] transition-all"></span>
+                <span class="w-6 h-0.5 bg-[var(--color-surface-text)] transition-all"></span>
+            </label>
+            <input type="checkbox" id="menu-toggle-pedido" class="peer hidden" />
+
+            <div class="peer-checked:flex hidden absolute top-full left-0 w-full bg-[var(--color-surface-bg)]/98 backdrop-blur-xl border-b border-ladrillo/40 flex-col p-6 space-y-4 md:hidden shadow-2xl z-40">
+                <a href="index.html#concepto" class="text-main hover:text-turquesa font-semibold text-base py-2 border-b border-ladrillo/20">El Concepto</a>
+                <a href="index.html#experiencias" class="text-main hover:text-turquesa font-semibold text-base py-2 border-b border-ladrillo/20">Experiencias</a>
+                <a href="index.html" class="text-main hover:text-turquesa font-semibold text-base py-2">← Volver al Inicio</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Toast del Easter Egg -->
+    <div id="easter-egg-toast" class="hidden fixed bottom-6 left-6 z-50 bg-mostaza text-carbon font-extrabold px-5 py-4 rounded-2xl shadow-2xl border-2 border-carbon items-center gap-3 animate-bounce max-w-sm">
+        <span class="text-2xl">🎁</span>
+        <div>
+            <p class="text-xs uppercase tracking-wider font-bold">¡Easter Egg Desbloqueado!</p>
+            <p class="text-sm">Conseguiste código de descuento: <strong class="underline tracking-widest">HIDE7VIP</strong></p>
+        </div>
+    </div>
+
+    
+
+    <main class="max-w-4xl mx-auto px-6 py-12 w-full space-y-8">
+        
+        <div class="space-y-2 border-b border-ladrillo/30 pb-6">
+           
+            <h1 class="font-heading text-3xl sm:text-4xl font-extrabold text-main">Registro</h1><br>
+            <p class="text-muted  font-light">Regístrate para acceder a beneficios exclusivos: acumula puntos, recibe un 10% de descuento en tu primera compra, guarda tus direcciones y métodos de pago favoritos.</p>
+        </div>
+
+        <form class="space-y-8">
+            
+            
+            
+
+            
+            <div class="bg-surface-card border border-ladrillo/30 p-6 sm:p-8 rounded-2xl space-y-6">
+                <h3 class="font-heading text-xl font-bold text-main flex items-center gap-2 required:">
+                    <span class="text-naranja">1.</span> Información personal
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-muted mb-1">Nombre Completo</label>
+                        <input type="text" placeholder="Ej: Emanuel Lopez Ceballos" class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-muted mb-1">Celular</label>
+                        <input type="tel" placeholder="+57 300 000 0000" class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all" required>
+                        
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-muted mb-1">Fecha de nacimiento</label>
+                        <input type="date" class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-muted mb-1">Correo</label>
+                        <input type="email" placeholder="Ej: marcosfuentes@gmail.com" class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all" required>
+                    </div>
+                    <div>
+                       <label class="block text-xs font-semibold text-muted mb-1">Contraseña</label>
+                    <input type="password" 
+                        placeholder="Mínimo 8 caracteres" 
+                        class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all" 
+                        required 
+                        minlength="8" 
+                        maxlength="100">
+                    <p class="text-[10px] text-muted mt-1"></p>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            
+            <div class="bg-surface-card border border-ladrillo/30 p-6 sm:p-8 rounded-2xl space-y-6">
+                <h3 class="font-heading text-xl font-bold text-main flex items-center gap-2">
+                    <span class="text-naranja">02.</span> Dirección 
+                </h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-muted mb-1">Dirección completa </label>
+                        <input type="text" placeholder="Carrera 43A # 1-50 " class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-muted mb-1">Barrio</label>
+                        <textarea rows="2" placeholder="Ej: Belén los alpes" class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all" required></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-muted mb-1">Indicaciones adicionales o Referencias</label>
+                        <textarea rows="2" placeholder="Ej: Frente al parque, Casa blanca de dos pisos"" class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all" ></textarea>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="bg-surface-card border border-ladrillo/30 p-6 sm:p-8 rounded-2xl space-y-6">
+                <h3 class="font-heading text-xl font-bold text-main flex items-center gap-2">
+                    <span class="text-naranja">03.</span> Aceptas terminos y condiciones
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div><label class="flex items-center gap-3 bg-surface-card border border-ladrillo/50 p-4 rounded-xl cursor-pointer hover:border-turquesa transition-all">
+                        <input type="checkbox" name="terminosycondiciones" class="accent-naranja" required>
+                        <span class="text-xs font-medium text-main" >Acepto los <strong>Términos y Condiciones</strong> y la Política de Privacidad.</span>
+                    </label>
+                    </div>
+                    <div><label class="flex items-center gap-3 bg-surface-card border border-ladrillo/50 p-4 rounded-xl cursor-pointer hover:border-turquesa transition-all">
+                        <input type="checkbox" name="suscribirse" class="accent-naranja">
+                        <span class="text-xs font-medium text-main" >Deseo recibir novedades, ofertas especiales y consejos por correo electrónico.</span>
+                    </label>
+                    </div>     
+                     
+                    
+                </div>
+               <div class="pt-2">
+    <button type="submit" class="w-full bg-naranja hover:bg-ladrillo text-crema font-bold px-4 py-2 rounded-lg text-sm transition-colors shadow-lg cursor-pointer">
+        Crear cuenta y pedir
+    </button>
+</div>
+            </div>
+            <button type="button" onclick="alert('¡Te has registrado con éxito!')" class="md:hidden fixed bottom-20 right-6 z-50 bg-naranja hover:bg-ladrillo text-crema font-extrabold px-6 py-3.5 rounded-full shadow-2xl shadow-naranja/50 flex items-center gap-2 text-sm tracking-wider uppercase border border-crema/20 cursor-pointer">
+                <span>Confirmar Pedido</span>
+                <span class="text-lg">✓</span>
+            </button>
+
+        </form>
+
+    </main>
+    
+    <footer class="border-t border-ladrillo/30 bg-black/40 py-6 text-center text-xs text-muted">
+        HIDE MEAL · AROUND THE EXPERIENCE © 2026. Todos los derechos reservados.
+    </footer>
+
+    <!--Menú fijo -->
+    <nav aria-label="Navegación principal" class="fixed inset-x-0 bottom-0 z-50 flex h-16 items-center justify-around rounded-t-2xl border-t border-ladrillo/40 bg-black px-4 text-crema shadow-[0_-4px_15px_rgba(0,0,0,0.5)] select-none">
+
+        <a href="index.html" class="flex max-w-20 flex-1 flex-col items-center justify-center gap-1 transition-colors hover:text-turquesa text-crema">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="size-6 text-naranja" aria-hidden="true">
+                <path d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+            </svg>
+            <span class="text-[11px] leading-none font-bold">Inicio</span>
+        </a>
+
+        <a href="menu.html" class="flex max-w-20 flex-1 flex-col items-center justify-center gap-1 transition-colors hover:text-turquesa text-crema">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="size-6 text-naranja" aria-hidden="true">
+                <path d="M6 3v5a2 2 0 0 0 4 0V3M8 3v18M17 21V3c-2.2 1.2-3.5 4-3.5 7.5 0 1.7 1.2 2.5 3.5 2.5" />
+            </svg>
+            <span class="text-[11px] leading-none font-bold">Menú</span>
+        </a>
+
+        <a href="pedido.html" aria-current="page" class="flex max-w-20 flex-1 flex-col items-center justify-center gap-1 transition-colors hover:text-turquesa text-crema">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="size-6 text-naranja" aria-hidden="true">
+                <path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+            </svg>
+            <span class="text-[11px] leading-none font-bold">Carrito</span>
+        </a>
+
+        <a href="mi-cuenta.html" class="flex max-w-20 flex-1 flex-col items-center justify-center gap-1 transition-colors hover:text-turquesa text-crema">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="size-6 text-naranja" aria-hidden="true">
+                <path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+            </svg>
+            <span class="text-[11px] leading-none font-bold">Mi Cuenta</span>
+        </a>
+    </nav>
+
+    <script>
+        let logoClicks = 0;
+        function handleLogoClick() {
+            logoClicks++;
+            if (logoClicks === 7) {
+                const toast = document.getElementById('easter-egg-toast');
+                toast.classList.remove('hidden');
+                toast.classList.add('flex');
+            }
+        }
+    </script>
+</body>
+</html>
