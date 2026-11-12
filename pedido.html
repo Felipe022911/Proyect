@@ -5,14 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Realizar Pedido | HIDE MEAL · AROUND THE EXPERIENCE</title>
     <link rel="stylesheet" href="src/output.css">
+    <!-- Leaflet CSS (Totalmente gratuito y 100% funcional) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        /* Forzar dimensiones correctas para que Leaflet renderice el mapa dentro del modal */
+        #modal-mapa .relative {
+            height: 420px !important;
+            min-height: 420px !important;
+        }
+        #leaflet-map-modal {
+            position: absolute !important;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100% !important;
+            height: 100% !important;
+        }
+    </style>
 </head>
-<body class="bg-[var(--color-surface-bg)] text-main min-h-screen flex flex-col justify-between selection:bg-ladrillo selection:text-crema">
+<body class="bg-[var(--color-surface-bg)] text-main min-h-screen flex flex-col justify-between selection:bg-ladrillo selection:text-crema pb-20">
 
     <header class="border-b border-ladrillo/30 bg-[var(--color-surface-bg)]/95 py-5 px-6 sticky top-0 z-50 backdrop-blur-md">
         <div class="max-w-4xl mx-auto flex items-center justify-between">
             
             <div class="flex items-center">
-                <button type="button"onclick="handleLogoClick()" class="focus:outline-none cursor-pointer flex items-center h-10">
+                <button type="button" onclick="handleLogoClick()" class="focus:outline-none cursor-pointer flex items-center h-10">
                     <img src="src/img/logo.png" alt="Hide Meal Logo" class="h-full w-auto object-contain hover:scale-105 transition-transform" />
                 </button>
             </div>
@@ -39,7 +57,7 @@
     </header>
 
     <!-- Toast del Easter Egg -->
-    <div id="easter-egg-toast" class="hidden fixed bottom-6 left-6 z-50 bg-mostaza text-carbon font-extrabold px-5 py-4 rounded-2xl shadow-2xl border-2 border-carbon items-center gap-3 animate-bounce max-w-sm">
+    <div id="easter-egg-toast" class="hidden fixed bottom-20 left-6 z-50 bg-mostaza text-carbon font-extrabold px-5 py-4 rounded-2xl shadow-2xl border-2 border-carbon items-center gap-3 animate-bounce max-w-sm">
         <span class="text-2xl">🎁</span>
         <div>
             <p class="text-xs uppercase tracking-wider font-bold">¡Easter Egg Desbloqueado!</p>
@@ -47,11 +65,44 @@
         </div>
     </div>
 
-    <!-- Botón Flotante para Confirmar / Reservar en Móvil -->
-    <button type="button" onclick="alert('¡Tu pedido HIDE MEAL ha sido registrado con éxito!')" class="md:hidden fixed bottom-6 right-6 z-40 bg-naranja hover:bg-ladrillo text-crema font-extrabold px-6 py-3.5 rounded-full shadow-2xl shadow-naranja/50 flex items-center gap-2 text-sm tracking-wider uppercase border border-crema/20 cursor-pointer">
-        <span>Confirmar Pedido</span>
-        <span class="text-lg">✓</span>
-    </button>
+    <!-- MODAL DE SELECCIÓN DE MAPA -->
+    <div id="modal-mapa" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md items-center justify-center p-4 sm:p-6">
+        <div class="bg-surface-card border border-ladrillo/40 w-full max-w-3xl rounded-3xl overflow-hidden shadow-2xl flex flex-col">
+            
+            <!-- Header Modal -->
+            <div class="p-4 bg-carbon border-b border-ladrillo/30 flex items-center justify-between">
+                <div>
+                    <h3 class="font-heading text-lg font-bold text-crema">Selecciona tu Ubicación en el Mapa</h3>
+                    <p class="text-xs text-muted">Haz clic en cualquier parte del mapa para marcar tu dirección</p>
+                </div>
+                <button type="button" onclick="cerrarModalMapa()" class="text-crema hover:text-turquesa font-bold text-xl px-3 py-1 cursor-pointer">✕</button>
+            </div>
+
+            <!-- Contenedor del Mapa -->
+            <div class="relative w-full bg-carbon" style="height: 420px;">
+                <div id="leaflet-map-modal" class="w-full h-full z-0"></div>
+                
+                <!-- Tarjeta Flotante Interna de Tiempo & Distancia -->
+                <div id="card-info-ruta" class="hidden absolute bottom-4 left-4 right-4 bg-carbon/95 border border-turquesa p-4 rounded-2xl backdrop-blur-md shadow-2xl space-y-2 z-[1000]">
+                    <div class="flex items-center justify-between border-b border-ladrillo/30 pb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xl">🛵</span>
+                            <span id="modal-tiempo" class="font-extrabold text-turquesa text-base sm:text-lg">-- min</span>
+                        </div>
+                        <span id="modal-distancia" class="text-xs font-bold text-mostaza">-- km</span>
+                    </div>
+                    <p id="modal-direccion-texto" class="text-xs text-crema font-light truncate">Dirección seleccionada correctamente</p>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 bg-carbon border-t border-ladrillo/30 flex justify-end items-center">
+                <button type="button" onclick="confirmarUbicacionModal()" class="w-full sm:w-auto bg-naranja hover:bg-ladrillo text-crema text-xs font-extrabold px-6 py-3.5 rounded-xl uppercase tracking-wider transition-all cursor-pointer text-center">
+                    Confirmar esta ubicación ✓
+                </button>
+            </div>
+        </div>
+    </div>
 
     <main class="max-w-4xl mx-auto px-6 py-12 w-full space-y-8">
         
@@ -61,7 +112,19 @@
             <p class="text-muted text-sm font-light">Selecciona la experiencia culinaria de tu preferencia, indica las cantidades y completa los detalles de entrega.</p>
         </div>
 
-        <form class="space-y-8">
+        <!-- Mensaje de Éxito -->
+        <div id="mensaje-exito" class="hidden bg-surface-card border-2 border-turquesa p-6 rounded-2xl space-y-3 shadow-2xl">
+            <div class="flex items-center gap-3 text-turquesa">
+                <span class="text-2xl">✓</span>
+                <h3 class="font-heading text-lg font-bold">¡Pedido Registrado con Éxito!</h3>
+            </div>
+            <p class="text-sm text-muted font-light">Tu velada privada ha sido encriptada y enviada a nuestra cocina clandestina. Te contactaremos vía telefónica con los detalles de acceso y la playlist sensorial.</p>
+            <button type="button" onclick="resetearFormulario()" class="mt-2 bg-turquesa hover:bg-opacity-80 text-crema font-bold px-4 py-2 rounded-xl text-xs uppercase tracking-wider transition-all cursor-pointer">
+                Hacer otro pedido
+            </button>
+        </div>
+
+        <form id="pedido-form" onsubmit="validarPedido(event)" class="space-y-8" autocomplete="off">
             
             <!-- 01. SELECCIÓN DE PLATOS -->
             <div class="bg-surface-card border border-ladrillo/30 p-6 sm:p-8 rounded-2xl space-y-6">
@@ -72,7 +135,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 items-end">
                     <div class="sm:col-span-8 space-y-2">
                         <label class="block text-xs font-semibold text-muted">Elige tu Plato de Autor</label>
-                        <select class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main focus:outline-none focus:border-turquesa transition-all cursor-pointer">
+                        <select id="plato" required class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main focus:outline-none focus:border-turquesa transition-all cursor-pointer">
                             <option value="" disabled selected>Selecciona una experiencia...</option>
                             <option value="1">Hamburguesa Trufada Secreta — $28.900</option>
                             <option value="2">Pizza Napolitana Clandestina — $42.000</option>
@@ -95,7 +158,7 @@
 
                     <div class="sm:col-span-4 space-y-2">
                         <label class="block text-xs font-semibold text-muted">Cantidad</label>
-                        <input type="number" min="1" value="1" class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main focus:outline-none focus:border-turquesa transition-all text-center font-bold text-mostaza">
+                        <input type="number" id="cantidad" min="1" value="1" required class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main focus:outline-none focus:border-turquesa transition-all text-center font-bold text-mostaza">
                     </div>
                 </div>
             </div>
@@ -107,12 +170,14 @@
                 </h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-muted mb-1">Nombre Completo</label>
-                        <input type="text" placeholder="Ej: Mateo Valencia" class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all">
+                        <label class="block text-xs font-semibold text-muted mb-1">Nombre Completo <span class="text-naranja">*</span></label>
+                        <input type="text" id="nombre" required minlength="3" placeholder="Ej: Mateo Valencia" class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all">
+                        <span class="text-[10px] text-muted font-light">Debe contener más de 2 letras.</span>
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-muted mb-1">Teléfono Secreto</label>
-                        <input type="tel" placeholder="+57 300 000 0000" class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all">
+                        <label class="block text-xs font-semibold text-muted mb-1">Teléfono Secreto <span class="text-naranja">*</span></label>
+                        <input type="tel" id="telefono" required maxlength="10" placeholder="3000000000" class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all">
+                        <span class="text-[10px] text-muted font-light">Debe iniciar por 3 y tener máximo 10 dígitos.</span>
                     </div>
                 </div>
             </div>
@@ -124,12 +189,30 @@
                 </h3>
                 <div class="space-y-4">
                     <div>
-                        <label class="block text-xs font-semibold text-muted mb-1">Dirección Exacta (Residencia / Lugar)</label>
-                        <input type="text" placeholder="Carrera 43A # 1-50, Apto 802" class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all">
+                        <label class="block text-xs font-semibold text-muted mb-1">Dirección de Entrega <span class="text-naranja">*</span></label>
+                        <div class="flex gap-2">
+                            <input type="text" id="direccion" required placeholder="Ingresa tu dirección o abre el mapa para marcarla..." class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all">
+                            <button type="button" onclick="abrirModalMapa()" class="bg-naranja hover:bg-opacity-80 text-crema px-4 py-3 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1 cursor-pointer">
+                                🗺️ Seleccionar en Mapa
+                            </button>
+                        </div>
                     </div>
+
+                    <!-- Tarjeta de Tiempo y Distancia Estimada -->
+                    <div id="info-tiempo-form" class="hidden bg-black/50 border border-turquesa/40 p-4 rounded-xl flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">🛵</span>
+                            <div>
+                                <p class="text-[11px] text-muted uppercase tracking-wider font-bold">Tiempo estimado de entrega por ruta</p>
+                                <p id="texto-tiempo-form" class="text-lg font-extrabold text-turquesa">-- min</p>
+                            </div>
+                        </div>
+                        <span id="texto-distancia-form" class="text-xs text-mostaza font-bold">-- km</span>
+                    </div>
+
                     <div>
-                        <label class="block text-xs font-semibold text-muted mb-1">Notas Especiales o Alergias</label>
-                        <textarea rows="2" placeholder="Ej: Sin cebolla en la salsa, timbre fuera de servicio..." class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all"></textarea>
+                        <label class="block text-xs font-semibold text-muted mb-1">Notas Especiales o Alergias <span class="text-xs text-muted/60">(Opcional)</span></label>
+                        <textarea id="notas" rows="2" placeholder="Ej: Sin cebolla en la salsa, timbre fuera de servicio..." class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all"></textarea>
                     </div>
                 </div>
             </div>
@@ -151,19 +234,169 @@
                 </div>
             </div>
 
-            <button type="button" onclick="alert('¡Tu pedido HIDE MEAL ha sido registrado con éxito!')" class="hidden md:block w-full bg-naranja hover:bg-ladrillo text-crema font-extrabold py-4 rounded-xl shadow-xl transition-all duration-300 text-sm tracking-widest uppercase cursor-pointer">
-                Confirmar & Enviar Pedido
+            <!-- Botón de Confirmación -->
+            <button type="submit" id="btn-enviar" class="w-full bg-naranja hover:bg-ladrillo text-crema font-extrabold py-4 rounded-xl shadow-xl transition-all duration-300 text-sm tracking-widest uppercase cursor-pointer flex items-center justify-center gap-2">
+                <span>Confirmar & Enviar Pedido</span>
+                <span class="text-lg">✓</span>
             </button>
 
         </form>
 
     </main>
 
+    <!-- Menú Fijo Inferior -->
+    <nav aria-label="Navegación principal" class="fixed inset-x-0 bottom-0 z-50 flex h-16 items-center justify-around rounded-t-2xl border-t border-ladrillo/40 bg-black px-4 text-crema shadow-[0_-4px_15px_rgba(0,0,0,0.5)] select-none">
+
+        <a href="index.html" class="flex max-w-20 flex-1 flex-col items-center justify-center gap-1 transition-colors hover:text-turquesa text-crema">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="size-6 text-naranja" aria-hidden="true">
+                <path d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+            </svg>
+            <span class="text-[11px] leading-none font-bold">Inicio</span>
+        </a>
+
+        <a href="index.html#experiencias" class="flex max-w-20 flex-1 flex-col items-center justify-center gap-1 transition-colors hover:text-turquesa text-crema">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="size-6 text-naranja" aria-hidden="true">
+                <path d="M6 3v5a2 2 0 0 0 4 0V3M8 3v18M17 21V3c-2.2 1.2-3.5 4-3.5 7.5 0 1.7 1.2 2.5 3.5 2.5" />
+            </svg>
+            <span class="text-[11px] leading-none font-bold">Menú</span>
+        </a>
+
+        <a href="pedido.html" aria-current="page" class="flex max-w-20 flex-1 flex-col items-center justify-center gap-1 transition-colors hover:text-turquesa text-crema">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="size-6 text-naranja" aria-hidden="true">
+                <path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+            </svg>
+            <span class="text-[11px] leading-none font-bold">Carrito</span>
+        </a>
+
+        <a href="#" class="flex max-w-20 flex-1 flex-col items-center justify-center gap-1 transition-colors hover:text-turquesa text-crema">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="size-6 text-naranja" aria-hidden="true">
+                <path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+            </svg>
+            <span class="text-[11px] leading-none font-bold">Mi Cuenta</span>
+        </a>
+
+    </nav>
+
     <footer class="border-t border-ladrillo/30 bg-black/40 py-6 text-center text-xs text-muted">
         HIDE MEAL · AROUND THE EXPERIENCE © 2026. Todos los derechos reservados.
     </footer>
 
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Script de Control del Mapa de Enrutamiento y Validaciones -->
     <script>
+        const COCINA_COORDS = [6.2088, -75.5677]; // Coordenadas HQ (El Poblado, Medellín)
+        let map = null;
+        let userMarker = null;
+        let cocinaMarker = null;
+        let routeLayer = null;
+
+        let ultimaDireccionCalculada = "";
+        let ultimoTiempoCalculado = "";
+        let ultimaDistanciaCalculada = "";
+
+        function abrirModalMapa() {
+            const modal = document.getElementById('modal-mapa');
+            
+            // 1. Mostrar el modal cambiándolo a flex PRIMERO
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            // 2. Inicializar el mapa y forzar el redibujado de Leaflet con un pequeño retraso
+            setTimeout(() => {
+                if (!map) {
+                    map = L.map('leaflet-map-modal', {
+                        zoomControl: true,
+                        attributionControl: false
+                    }).setView(COCINA_COORDS, 14);
+
+                    // Capa Esri World Street Map (Libre de bloqueos 403, sin restricciones ni API Key)
+                    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+                        maxZoom: 19,
+                        attribution: 'Tiles &copy; Esri'
+                    }).addTo(map);
+
+                    cocinaMarker = L.marker(COCINA_COORDS).addTo(map)
+                        .bindPopup("<b>HIDE MEAL HQ</b><br>Cocina Clandestina").openPopup();
+
+                    map.on('click', (e) => {
+                        const coords = [e.latlng.lat, e.latlng.lng];
+                        marcarPuntoYCalcular(coords);
+                    });
+                }
+                
+                // CRUCIAL: Fuerza a Leaflet a recalcular dimensiones exactas del contenedor visible
+                map.invalidateSize();
+            }, 200);
+        }
+
+        function cerrarModalMapa() {
+            const modal = document.getElementById('modal-mapa');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+
+        function marcarPuntoYCalcular(coords) {
+            if (!userMarker) {
+                userMarker = L.marker(coords, { draggable: true }).addTo(map);
+                userMarker.on('dragend', (e) => {
+                    const pos = e.target.getLatLng();
+                    marcarPuntoYCalcular([pos.lat, pos.lng]);
+                });
+            } else {
+                userMarker.setLatLng(coords);
+            }
+
+            calcularRutaYTiempo(COCINA_COORDS, coords);
+        }
+
+        async function calcularRutaYTiempo(origen, destino) {
+            const url = `https://router.project-osrm.org/route/v1/driving/${origen[1]},${origen[0]};${destino[1]},${destino[0]}?overview=full&geometries=geojson`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.routes && data.routes.length > 0) {
+                    const ruta = data.routes[0];
+                    const duracionMinutos = Math.round(ruta.duration / 60) + 15;
+                    const distanciaKm = (ruta.distance / 1000).toFixed(1);
+
+                    ultimoTiempoCalculado = `~${duracionMinutos} min`;
+                    ultimaDistanciaCalculada = `${distanciaKm} km`;
+                    ultimaDireccionCalculada = `Ubicación Seleccionada (${destino[0].toFixed(4)}, ${destino[1].toFixed(4)})`;
+
+                    document.getElementById('card-info-ruta').classList.remove('hidden');
+                    document.getElementById('modal-tiempo').innerText = ultimoTiempoCalculado;
+                    document.getElementById('modal-distancia').innerText = ultimaDistanciaCalculada;
+                    document.getElementById('modal-direccion-texto').innerText = ultimaDireccionCalculada;
+
+                    if (routeLayer) map.removeLayer(routeLayer);
+                    routeLayer = L.geoJSON(ruta.geometry, {
+                        style: { color: '#0097B2', weight: 4, opacity: 0.9 }
+                    }).addTo(map);
+
+                    const bounds = L.latLngBounds([origen, destino]);
+                    map.fitBounds(bounds, { padding: [40, 40] });
+                }
+            } catch (err) {
+                console.error("Error al calcular ruta:", err);
+            }
+        }
+
+        function confirmarUbicacionModal() {
+            if (ultimaDireccionCalculada) {
+                document.getElementById('direccion').value = ultimaDireccionCalculada;
+                document.getElementById('texto-tiempo-form').innerText = ultimoTiempoCalculado;
+                document.getElementById('texto-distancia-form').innerText = ultimaDistanciaCalculada;
+                document.getElementById('info-tiempo-form').classList.remove('hidden');
+                cerrarModalMapa();
+            } else {
+                alert("Por favor haz clic en cualquier punto del mapa para seleccionar tu dirección.");
+            }
+        }
+
         let logoClicks = 0;
         function handleLogoClick() {
             logoClicks++;
@@ -172,6 +405,60 @@
                 toast.classList.remove('hidden');
                 toast.classList.add('flex');
             }
+        }
+
+        function validarPedido(event) {
+            event.preventDefault();
+            
+            const plato = document.getElementById('plato');
+            const cantidad = document.getElementById('cantidad');
+            const nombre = document.getElementById('nombre');
+            const telefono = document.getElementById('telefono');
+            const direccion = document.getElementById('direccion');
+            const form = document.getElementById('pedido-form');
+            const mensajeExito = document.getElementById('mensaje-exito');
+            
+            let errores = [];
+            const nombreValor = nombre.value.trim();
+            const telefonoValor = telefono.value.trim();
+            const direccionValor = direccion.value.trim();
+
+            if (!plato.value) errores.push("Seleccionar una Experiencia Clandestina.");
+            if (!cantidad.value || cantidad.value < 1) errores.push("Indicar una cantidad válida (mínimo 1).");
+            
+            if (!nombreValor || nombreValor.length <= 2) {
+                errores.push("Nombre Completo: Debe tener más de 2 caracteres.");
+            }
+
+            const regexTelefono = /^3\d{0,9}$/;
+            if (!telefonoValor || !regexTelefono.test(telefonoValor) || telefonoValor.length > 10) {
+                errores.push("Teléfono Secreto: Debe iniciar por '3' y tener máximo 10 dígitos numéricos.");
+            }
+
+            if (!direccionValor) errores.push("Dirección Exacta: Debes ingresar o seleccionar una dirección.");
+
+            if (errores.length > 0) {
+                alert("⚠️ Revisa los siguientes errores:\n\n• " + errores.join("\n• "));
+                return;
+            }
+            
+            form.classList.add('hidden');
+            mensajeExito.classList.remove('hidden');
+            mensajeExito.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetearFormulario() {
+            const form = document.getElementById('pedido-form');
+            const mensajeExito = document.getElementById('mensaje-exito');
+            
+            form.reset();
+            form.classList.remove('hidden');
+            mensajeExito.classList.add('hidden');
+            document.getElementById('info-tiempo-form').classList.add('hidden');
+            document.getElementById('card-info-ruta').classList.add('hidden');
+            if (routeLayer) map.removeLayer(routeLayer);
+            if (userMarker) map.removeLayer(userMarker);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
