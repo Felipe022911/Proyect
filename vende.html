@@ -24,14 +24,6 @@
             class="h-full w-auto object-contain hover:scale-105 transition-transform" />
         </button>
       </div>
-
-      <!-- Botón (Lado Derecho) -->
-      <!-- ARREGLO: mismo nombre de archivo que usa el index -->
-      <a href="vende_con_nosotros.html" aria-current="page"
-        class="bg-naranja hover:bg-ladrillo text-crema font-bold px-4 py-2 rounded-lg text-sm transition-colors shadow-lg">
-        Vende con nosotros
-      </a>
-
     </div>
   </header>
 
@@ -97,7 +89,6 @@
         </div>
 
         <!-- FILA 3: tipo de documento + número -->
-        <!-- ARREGLO: label con for correcto, opciones de comida borradas, div cerrado, campo de número agregado -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label for="tipo_documento" class="block text-xs font-semibold text-muted mb-1">
@@ -131,8 +122,11 @@
       <!-- ===== BLOQUE 2: Tu marca ===== -->
       <fieldset class="space-y-4">
         <legend class="text-xs uppercase tracking-widest text-turquesa font-bold mb-2">2. Tu marca</legend>
-         <label for="comentarios" class="block text-xs font-semibold text-muted mb-1">Comentarios</label>
-          <textarea id="comentarios" name="comentarios" rows="4" maxlength="300"
+         <label for="comentarios" class="block text-xs font-semibold text-muted mb-1">Cuentanos sobre tu marca</label>
+            <input type="name" id="marca" name="marca" required placeholder="Nombre de tu marca"
+              class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all">
+            <span class="block text-xs font-semibold text-muted mb-1">Cuentanos algo sobre tu marca</span>
+            <textarea id="comentarios" name="comentarios" rows="4" maxlength="300"
             placeholder="Cuéntanos algo más de tu producto"
             class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all"></textarea>
 
@@ -195,8 +189,7 @@
         <label for="datos" class="flex items-start gap-3 text-sm text-muted">
           <input type="checkbox" id="datos" name="autoriza_datos" value="si" required class="mt-1 accent-naranja">
           <span>Autorizo el tratamiento de mis datos personales según la
-            <a href="politica-datos.html" class="text-turquesa font-bold underline">política de tratamiento de
-              datos</a>. <span class="text-naranja">*</span>
+            <a href="src/docs/politica-datos.pdf" target="_blank" rel="noopener" class="text-turquesa font-bold underline">política de tratamiento de datos</a>
           </span>
         </label>
       </div>
