@@ -49,7 +49,6 @@
     --font-weight-bold: 700;
     --font-weight-extrabold: 800;
     --tracking-tight: -0.025em;
-    --tracking-wide: 0.025em;
     --tracking-wider: 0.05em;
     --tracking-widest: 0.1em;
     --leading-tight: 1.25;
@@ -58,7 +57,6 @@
     --radius-xl: 0.75rem;
     --radius-2xl: 1rem;
     --radius-3xl: 1.5rem;
-    --drop-shadow-md: 0 3px 3px rgb(0 0 0 / 0.12);
     --drop-shadow-lg: 0 4px 4px rgb(0 0 0 / 0.15);
     --drop-shadow-xl: 0 9px 7px rgb(0 0 0 / 0.1);
     --animate-bounce: bounce 1s infinite;
@@ -1299,10 +1297,9 @@ body {
   border-radius: 4px;
 }
 form {
-  background-color: #ffffff;
   padding: 2rem;
   border-radius: 8px;
-  border: 1px solid rgba(91, 100, 112, 0.2);
+  border: 1px solid rgba(153, 40, 0, 0.3);
 }
 form p {
   display: flex;
@@ -1339,7 +1336,7 @@ fieldset {
 legend {
   float: none;
   width: auto;
-  font-family: var(--font-heading);
+  font-family: var(--fuente-titulos);
   font-weight: 700;
   font-size: 1.1rem;
   color: var(--azul-noche);

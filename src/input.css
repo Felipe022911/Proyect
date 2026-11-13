@@ -70,12 +70,11 @@ body {
   border-radius: 4px;
 }
 
-/* Vende con nosotros */
+/* Formularios corregidos para respetar el tema oscuro sin fondo blanco forzado */
 form {
-  background-color: #ffffff;
   padding: 2rem;
   border-radius: 8px;
-  border: 1px solid rgba(91, 100, 112, 0.2);
+  border: 1px solid rgba(153, 40, 0, 0.3);
 }
 
 form p {
@@ -125,7 +124,7 @@ fieldset {
 legend {
   float: none;
   width: auto;
-  font-family: var(--font-heading);
+  font-family: var(--fuente-titulos);
   font-weight: 700;
   font-size: 1.1rem;
   color: var(--azul-noche);
