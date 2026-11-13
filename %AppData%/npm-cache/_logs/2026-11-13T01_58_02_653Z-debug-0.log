@@ -1,0 +1,33 @@
+0 verbose cli D:\node.exe D:\riwi\proyect\%AppData%\npm\node_modules\npm\bin\npm-cli.js
+1 info using npm@12.2.2
+2 info using node@v26.13.0
+3 silly config load:file:D:\riwi\proyect\%AppData%\npm\node_modules\npm\npmrc
+4 silly config load:file:D:\.npmrc
+5 silly config load:file:C:\Users\user\.npmrc
+6 silly config load:file:D:\riwi\proyect\%AppData%\npm\etc\npmrc
+7 verbose title npm init
+8 verbose argv "init" "--yes"
+9 verbose logfile logs-max:10 dir:D:\riwi\proyect\%AppData%\npm-cache\_logs\2026-11-13T01_58_02_653Z-
+10 verbose logfile D:\riwi\proyect\%AppData%\npm-cache\_logs\2026-11-13T01_58_02_653Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly package data {
+12 silly package data   name: 'proyect',
+12 silly package data   version: '1.0.0',
+12 silly package data   description: '',
+12 silly package data   main: 'index.js',
+12 silly package data   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+12 silly package data   repository: {
+12 silly package data     type: 'git',
+12 silly package data     url: 'git+https://github.com/Felipe022911/Proyect.git'
+12 silly package data   },
+12 silly package data   keywords: [],
+12 silly package data   type: 'commonjs',
+12 silly package data   bugs: { url: 'https://github.com/Felipe022911/Proyect/issues' },
+12 silly package data   homepage: 'https://github.com/Felipe022911/Proyect#readme'
+12 silly package data }
+13 verbose cwd D:\riwi\proyect
+14 verbose os Windows_NT 10.0.19045
+15 verbose node v26.13.0
+16 verbose npm  v12.2.2
+17 verbose exit 0
+18 info ok

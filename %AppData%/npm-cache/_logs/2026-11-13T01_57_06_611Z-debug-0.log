@@ -1,0 +1,24 @@
+0 verbose cli D:\node.exe D:\riwi\proyect\%AppData%\npm\node_modules\npm\bin\npm-cli.js
+1 info using npm@12.2.2
+2 info using node@v26.13.0
+3 silly config load:file:D:\riwi\proyect\%AppData%\npm\node_modules\npm\npmrc
+4 silly config load:file:D:\.npmrc
+5 silly config load:file:C:\Users\user\.npmrc
+6 silly config load:file:D:\riwi\proyect\%AppData%\npm\etc\npmrc
+7 verbose title npm exec @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch
+8 verbose argv "exec" "--" "@tailwindcss/cli" "-i" "./src/input.css" "-o" "./src/output.css" "--watch"
+9 verbose logfile logs-max:10 dir:D:\riwi\proyect\%AppData%\npm-cache\_logs\2026-11-13T01_57_06_611Z-
+10 verbose logfile D:\riwi\proyect\%AppData%\npm-cache\_logs\2026-11-13T01_57_06_611Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4395630592 maxSize:1098907648 maxEntrySize:549453824
+13 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2fcli 483ms (cache revalidated)
+14 silly packumentCache heap:4395630592 maxSize:1098907648 maxEntrySize:549453824
+15 silly packumentCache heap:4395630592 maxSize:1098907648 maxEntrySize:549453824
+16 notice run npx
+17 notice run ^"tailwindcss^" -i ./src/input.css -o ./src/output.css --watch
+18 verbose cwd D:\riwi\proyect
+19 verbose os Windows_NT 10.0.19045
+20 verbose node v26.13.0
+21 verbose npm  v12.2.2
+22 verbose exit 1
+23 verbose code 1

@@ -1,8 +1,8 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 @theme {
-  --font-heading: 'Cinzel', serif;
+  --font-heading: 'Archivo Black', sans-serif;
   --font-body: 'Montserrat', sans-serif;
 
   /* Esquema Oscuro (Predeterminado / Clandestino) */
@@ -24,8 +24,8 @@
 @media (prefers-color-scheme: light) {
   :root {
     --color-surface-bg: #F5F3EF;
-    --color-surface-text: #1E1C1B; /* Texto principal oscuro */
-    --color-surface-text-muted: #4A4644; /* Texto secundario con alto contraste */
+    --color-surface-text: #1E1C1B;
+    --color-surface-text-muted: #4A4644;
     --color-card-bg: #FFFFFF;
     --color-card-border: rgba(153, 40, 0, 0.25);
   }
@@ -125,7 +125,7 @@ fieldset {
 legend {
   float: none;
   width: auto;
-  font-family: var(--fuente-titulos);
+  font-family: var(--font-heading);
   font-weight: 700;
   font-size: 1.1rem;
   color: var(--azul-noche);
