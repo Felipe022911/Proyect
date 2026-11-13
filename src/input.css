@@ -1,0 +1,142 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+@theme {
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Montserrat', sans-serif;
+
+  /* Esquema Oscuro (Predeterminado / Clandestino) */
+  --color-carbon: #312E2C;
+  --color-crema: #E4E2DD;
+  --color-turquesa: #0097B2;
+  --color-ladrillo: #992800;
+  --color-naranja: #D34A24;
+  --color-mostaza: #FFAF00;
+
+  --color-surface-bg: var(--color-carbon);
+  --color-surface-text: var(--color-crema);
+  --color-surface-text-muted: rgba(228, 226, 221, 0.75);
+  --color-card-bg: var(--color-carbon);
+  --color-card-border: rgba(153, 40, 0, 0.3);
+}
+
+/* Adaptabilidad nativa a Tema Claro sin JS */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-surface-bg: #F5F3EF;
+    --color-surface-text: #1E1C1B; /* Texto principal oscuro */
+    --color-surface-text-muted: #4A4644; /* Texto secundario con alto contraste */
+    --color-card-bg: #FFFFFF;
+    --color-card-border: rgba(153, 40, 0, 0.25);
+  }
+}
+
+body {
+  background-color: var(--color-surface-bg);
+  color: var(--color-surface-text);
+  font-family: var(--font-body);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Utilidades para legibilidad dinamica */
+.text-main {
+  color: var(--color-surface-text);
+}
+
+.text-muted {
+  color: var(--color-surface-text-muted);
+}
+
+.bg-surface-card {
+  background-color: var(--color-card-bg);
+  border-color: var(--color-card-border);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+/* Scrollbar personalizada */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--color-surface-bg);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-ladrillo);
+  border-radius: 4px;
+}
+
+/* Vende con nosotros */
+form {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid rgba(91, 100, 112, 0.2);
+}
+
+form p {
+  display: flex;
+  flex-direction: column;
+}
+
+form p:has(input[type="checkbox"]) {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+label {
+  font-weight: 600;
+  color: var(--azul-noche);
+  margin-bottom: 0.5rem;
+}
+
+form input[type="checkbox"] + label {
+  margin-bottom: 0;
+  font-weight: normal;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--gris-asfalto);
+  border-radius: 4px;
+  color: var(--gris-asfalto);
+  background-color: var(--crema);
+}
+
+fieldset {
+  border: 1px solid var(--gris-asfalto);
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+legend {
+  float: none;
+  width: auto;
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--azul-noche);
+  padding: 0 0.5rem;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--color-naranja);
+  outline-offset: 2px;
+}

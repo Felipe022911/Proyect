@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vende con nosotros · HIDE MEAL</title>
+  <link rel="stylesheet" href="src/output.css">
+</head>
+
+<!-- ARREGLO: mismas clases de body que pedido.html (pb-20 ya existe en tu CSS) -->
+<body class="bg-(--color-surface-bg) text-main antialiased min-h-screen flex flex-col justify-between selection:bg-ladrillo selection:text-crema custom-scrollbar pb-20">
+
+  <!-- Header / Navbar -->
+  <header
+    class="sticky top-0 z-50 bg-(--color-surface-bg)/95 backdrop-blur-md border-b border-ladrillo/30 transition-colors">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- Logo & Easter Egg Trigger (Lado Izquierdo) -->
+      <div class="flex items-center">
+        <button type="button" onclick="handleLogoClick()"
+          class="focus:outline-none cursor-pointer flex items-center h-10">
+          <img src="src/img/logo.png" alt="Hide Meal Logo"
+            class="h-full w-auto object-contain hover:scale-105 transition-transform" />
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ARREGLO: sin pb-36 (el espacio del menú ya lo reserva el body) -->
+  <main class="max-w-4xl mx-auto px-6 py-12 w-full space-y-8">
+
+    <form action="#" method="post"
+      class="bg-surface-card border border-ladrillo/30 p-6 sm:p-8 rounded-2xl shadow-2xl space-y-6">
+
+      <h1 class="font-heading text-2xl font-bold text-main">
+        <span class="text-naranja">Vende</span> con nosotros
+      </h1>
+      <p class="text-sm text-muted">
+        Inscribirte no te compromete a nada. Revisamos tu solicitud y te contactamos en máximo 5 días hábiles.
+      </p>
+
+      <!-- ===== BLOQUE 1: Quién eres ===== -->
+      <fieldset class="space-y-4">
+        <legend class="text-xs uppercase tracking-widest text-turquesa font-bold mb-2">1. Quién eres</legend>
+
+        <!-- FILA 1: nombre + celular -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="nombre" class="block text-xs font-semibold text-muted mb-1">
+              Nombre completo <span class="text-naranja">*</span>
+            </label>
+            <input type="text" id="nombre" name="nombre" required minlength="3" placeholder="Ej: Mateo Valencia"
+              autocomplete="name"
+              class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all">
+            <span class="text-xs text-muted font-light">Mínimo 3 letras.</span>
+          </div>
+
+          <div>
+            <label for="celular" class="block text-xs font-semibold text-muted mb-1">
+              Celular / WhatsApp <span class="text-naranja">*</span>
+            </label>
+            <input type="tel" id="celular" name="celular" required pattern="3[0-9]{9}" maxlength="10"
+              inputmode="numeric" placeholder="3001234567" autocomplete="tel"
+              class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all">
+            <span class="text-xs text-muted font-light">10 dígitos, empieza por 3.</span>
+          </div>
+        </div>
+
+        <!-- FILA 2: correo + ciudad -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="correo" class="block text-xs font-semibold text-muted mb-1">
+              Correo electrónico <span class="text-naranja">*</span>
+            </label>
+            <input type="email" id="correo" name="correo" required placeholder="tucorreo@ejemplo.com"
+              autocomplete="email"
+              class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all">
+            <span class="text-xs text-muted font-light">Aquí te enviaremos la respuesta.</span>
+          </div>
+
+          <div>
+            <label for="ciudad" class="block text-xs font-semibold text-muted mb-1">
+              Ciudad <span class="text-naranja">*</span>
+            </label>
+            <input type="text" id="ciudad" name="ciudad" required placeholder="Medellín" autocomplete="address-level2"
+              class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all">
+          </div>
+        </div>
+
+        <!-- FILA 3: tipo de documento + número -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="tipo_documento" class="block text-xs font-semibold text-muted mb-1">
+              Tipo de documento <span class="text-naranja">*</span>
+            </label>
+            <select id="tipo_documento" name="tipo_documento" required
+              class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main focus:outline-none focus:border-turquesa transition-all">
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option value="cc">Cédula de ciudadanía</option>
+              <option value="ce">Cédula de extranjería</option>
+              <option value="pasaporte">Pasaporte</option>
+              <option value="nit">NIT</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="numero_documento" class="block text-xs font-semibold text-muted mb-1">
+              Número de documento <span class="text-naranja">*</span>
+            </label>
+            <input type="text" id="numero_documento" name="numero_documento" required minlength="5" maxlength="15"
+              inputmode="numeric" placeholder="Ej: 1020304050"
+              class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all">
+            <span class="text-xs text-muted font-light">Sin puntos. Si es NIT, con el dígito de verificación.</span>
+          </div>
+        </div>
+
+        <!-- TÚ: tipo de aliado con radios: restaurante / influencer / emprendedor / otro
+             Ojo: todos los radios del grupo llevan el MISMO name y un value distinto -->
+      </fieldset>
+
+      <!-- ===== BLOQUE 2: Tu marca ===== -->
+      <fieldset class="space-y-4">
+        <legend class="text-xs uppercase tracking-widest text-turquesa font-bold mb-2">2. Tu marca</legend>
+         <label for="comentarios" class="block text-xs font-semibold text-muted mb-1">Nombre de tu marca</label>
+            <input type="name" id="marca" name="marca" required placeholder="Nombre de tu marca"
+              class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all">
+            <span class="block text-xs font-semibold text-muted mb-1">Cuentanos algo sobre tu marca</span>
+            <textarea id="comentarios" name="comentarios" rows="4" maxlength="300"
+            placeholder="Cuéntanos algo más de tu producto"
+            class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all"></textarea>
+
+
+        <!-- FILA 1 -> nombre de la marca + redes sociales (type="url") -->
+        <!-- descripción de la marca (textarea, copia el estilo del de comentarios) -->
+      </fieldset>
+
+      <!-- ===== BLOQUE 3: Tus productos ===== -->
+      <fieldset class="space-y-4">
+        <legend class="text-xs uppercase tracking-widest text-turquesa font-bold mb-2">3. Tus productos</legend>
+
+        <!-- FILA 1: tipo de comida + campo "Otro" -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="tipo_comida" class="block text-xs font-semibold text-muted mb-1">
+              Tipo de comida <span class="text-naranja">*</span>
+            </label>
+            <select id="tipo_comida" name="tipo_comida" required
+              class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main focus:outline-none focus:border-turquesa transition-all">
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option value="rapida">Comida rápida</option>
+              <option value="colombiana">Comida colombiana</option>
+              <option value="asiatica">Asiática</option>
+              <option value="italiana">Italiana</option>
+              <option value="mexicana">Mexicana</option>
+              <option value="parrilla">Parrilla y asados</option>
+              <option value="saludable">Saludable / vegetariana / vegana</option>
+              <option value="mar">Mar y pescados</option>
+              <option value="postres">Postres y panadería</option>
+              <option value="bebidas">Bebidas</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+
+          <!-- Campo para "Otro": arranca oculto con la clase hidden. El JavaScript lo muestra. -->
+          <div id="caja_tipo_otro" class="hidden">
+            <label for="tipo_otro" class="block text-xs font-semibold text-muted mb-1">
+              ¿Qué tipo de comida? <span class="text-naranja">*</span>
+            </label>
+            <input type="text" id="tipo_otro" name="tipo_otro" placeholder="Ej: árabe, peruana…"
+              class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all">
+          </div>
+        </div>
+
+        <!-- TÚ: FILA 2 -> número de platos (type="number", min="1") -->
+        <!-- TÚ: canal de venta con checkbox: "En el restaurante" y "A domicilio" -->
+
+        <div>
+          <label for="comentarios" class="block text-xs font-semibold text-muted mb-1">Comentarios</label>
+          <textarea id="comentarios" name="comentarios" rows="4" maxlength="300"
+            placeholder="Cuéntanos algo más de tu producto"
+            class="w-full bg-surface-card border border-ladrillo/40 rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all"></textarea>
+        </div>
+      </fieldset>
+
+      <!-- ===== BLOQUE 4: Cierre ===== -->
+      <div class="space-y-3">
+        <!-- Ley 1581: desmarcada por defecto y obligatoria -->
+        <label for="datos" class="flex items-start gap-3 text-sm text-muted">
+          <input type="checkbox" id="datos" name="autoriza_datos" value="si" required class="mt-1 accent-naranja">
+          <span>Autorizo el tratamiento de mis datos personales según la
+            <a href="src/docs/politica-datos.pdf" target="_blank" rel="noopener" class="text-turquesa font-bold underline">política de tratamiento de datos</a>
+          </span>
+        </label>
+      </div>
+
+      <button type="submit"
+        class="w-full bg-naranja hover:bg-ladrillo text-white font-bold px-6 py-4 rounded-full shadow-lg transition-colors">
+        Quiero vender con Hide Meal
+      </button>
+    </form>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-ladrillo/30 bg-black/40 py-6 text-center text-xs text-muted">
+    HIDE MEAL · AROUND THE EXPERIENCE © 2026. Todos los derechos reservados.
+  </footer>
+
+  <!--Menú fijo -->
+  <nav aria-label="Navegación principal"
+    class="fixed inset-x-0 bottom-0 z-50 flex h-16 items-center justify-around rounded-t-2xl border-t border-ladrillo/40 bg-black px-4 text-crema shadow-[0_-4px_15px_rgba(0,0,0,0.5)] select-none">
+
+    <a href="index.html"
+      class="flex max-w-20 flex-1 flex-col items-center justify-center gap-1 transition-colors hover:text-turquesa text-crema">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+        stroke-linecap="round" stroke-linejoin="round" class="size-6 text-naranja" aria-hidden="true">
+        <path
+          d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+      </svg>
+      <span class="text-[11px] leading-none font-bold">Inicio</span>
+    </a>
+
+    <a href="menu.html"
+      class="flex max-w-20 flex-1 flex-col items-center justify-center gap-1 transition-colors hover:text-turquesa text-crema">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+        stroke-linecap="round" stroke-linejoin="round" class="size-6 text-naranja" aria-hidden="true">
+        <path d="M6 3v5a2 2 0 0 0 4 0V3M8 3v18M17 21V3c-2.2 1.2-3.5 4-3.5 7.5 0 1.7 1.2 2.5 3.5 2.5" />
+      </svg>
+      <span class="text-[11px] leading-none font-bold">Menú</span>
+    </a>
+
+    <a href="pedido.html"
+      class="flex max-w-20 flex-1 flex-col items-center justify-center gap-1 transition-colors hover:text-turquesa text-crema">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+        stroke-linecap="round" stroke-linejoin="round" class="size-6 text-naranja" aria-hidden="true">
+        <path
+          d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+      </svg>
+      <span class="text-[11px] leading-none font-bold">Carrito</span>
+    </a>
+
+    <a href="mi-cuenta.html"
+      class="flex max-w-20 flex-1 flex-col items-center justify-center gap-1 transition-colors hover:text-turquesa text-crema">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+        stroke-linecap="round" stroke-linejoin="round" class="size-6 text-naranja" aria-hidden="true">
+        <path
+          d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+      </svg>
+      <span class="text-[11px] leading-none font-bold">Mi Cuenta</span>
+    </a>
+  </nav>
+
+  <script>
+    // ===== Easter egg: 7 clics en el logo =====
+    let logoClicks = 0;
+    function handleLogoClick() {
+      logoClicks++;
+      const toast = document.getElementById('easter-egg-toast');
+      // "&& toast" evita el error si el toast no existe en esta página
+      if (logoClicks === 7 && toast) {
+        toast.classList.remove('hidden');
+        toast.classList.add('flex');
+      }
+    }
+
+  </script>
+</body>
+
+</html>
