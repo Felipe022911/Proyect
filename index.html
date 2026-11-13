@@ -6,26 +6,26 @@
     <title>HIDE MEAL · AROUND THE EXPERIENCE</title>
     <link rel="stylesheet" href="src/output.css">
 </head>
-<body class="bg-(--color-surface-bg) text-main antialiased selection:bg-ladrillo selection:text-crema custom-scrollbar">
+<body class="bg-(--color-surface-bg) text-main antialiased selection:bg-ladrillo selection:text-crema custom-scrollbar pb-24">
 
     <!-- Header / Navbar -->
     <header class="sticky top-0 z-50 bg-(--color-surface-bg)/95 backdrop-blur-md border-b border-ladrillo/30 transition-colors">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        
-        <!-- Logo & Easter Egg Trigger (Lado Izquierdo) -->
-        <div class="flex items-center">
-            <button type="button" onclick="handleLogoClick()" class="focus:outline-none cursor-pointer flex items-center h-10">
-                <img src="src/img/logo.png" alt="Hide Meal Logo" class="h-full w-auto object-contain hover:scale-105 transition-transform" />
-            </button>
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            
+            <!-- Logo & Easter Egg Trigger (Lado Izquierdo) -->
+            <div class="flex items-center">
+                <button type="button" onclick="handleLogoClick()" class="focus:outline-none cursor-pointer flex items-center h-10">
+                    <img src="src/img/logo.png" alt="Hide Meal Logo" class="h-full w-auto object-contain hover:scale-105 transition-transform" />
+                </button>
+            </div>
+
+            <!-- Botón (Lado Derecho) -->
+            <a href="vende.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-4 py-2 rounded-lg text-sm transition-colors shadow-lg">
+                Vende con nosotros
+            </a>
+
         </div>
-
-        <!-- Botón (Lado Derecho) -->
-        <a href="vende.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-4 py-2 rounded-lg text-sm transition-colors shadow-lg">
-            Vende con nosotros
-        </a>
-
-    </div>
-</header>
+    </header>
 
    
     <div id="easter-egg-toast" class="hidden fixed top-24 left-6 sm:top-auto sm:bottom-6 sm:left-6 z-50 bg-mostaza text-carbon font-extrabold px-5 py-4 rounded-2xl shadow-2xl border-2 border-carbon items-center gap-3 animate-bounce max-w-sm">
@@ -37,7 +37,7 @@
     </div>
 
     <!-- Main Landing Container -->
-    <main class="space-y-24 md:space-y-32 pb-20">
+    <main class="space-y-24 md:space-y-32 pb-8">
 
         <!-- BANNER FULL-SCREEN -->
         <section class="relative min-h-[calc(100vh-80px)] w-full flex items-center justify-center overflow-hidden bg-black">
@@ -169,9 +169,12 @@
 
     </main>
 
+ <footer class="border-t border-ladrillo/30 bg-black/40 py-6 text-center text-xs text-muted">
+        HIDE MEAL · AROUND THE EXPERIENCE © 2026. Todos los derechos reservados.
+    </footer>
 
-    </main>
-            <!--Menú fijo -->
+
+    <!--Menú fijo -->
     <nav aria-label="Navegación principal" class="fixed inset-x-0 bottom-0 z-50 flex h-16 items-center justify-around rounded-t-2xl border-t border-ladrillo/40 bg-black px-4 text-crema shadow-[0_-4px_15px_rgba(0,0,0,0.5)] select-none">
 
         <a href="index.html" class="flex max-w-20 flex-1 flex-col items-center justify-center gap-1 transition-colors hover:text-turquesa text-crema">
@@ -202,6 +205,7 @@
             <span class="text-[11px] leading-none font-bold">Mi Cuenta</span>
         </a>
 
+    </nav>
 
     <!-- Lógica Easter Egg (Exactamente 7 Clics en la Imagen del Logo) -->
     <script>
