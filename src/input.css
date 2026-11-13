@@ -70,10 +70,10 @@ body {
   border-radius: 4px;
 }
 
-/* Formularios corregidos para respetar el tema oscuro sin fondo blanco forzado */
+/* Formularios adaptados al esquema estético HIDE MEAL */
 form {
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 1rem;
   border: 1px solid rgba(153, 40, 0, 0.3);
 }
 
@@ -90,7 +90,7 @@ form p:has(input[type="checkbox"]) {
 
 label {
   font-weight: 600;
-  color: var(--azul-noche);
+  color: var(--color-surface-text);
   margin-bottom: 0.5rem;
 }
 
@@ -99,24 +99,39 @@ form input[type="checkbox"] + label {
   font-weight: normal;
 }
 
+/* Casillas con bordes redondeados y color naranja */
 input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="date"],
 input[type="number"],
+input[type="password"],
 select,
 textarea {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid var(--gris-asfalto);
-  border-radius: 4px;
-  color: var(--gris-asfalto);
-  background-color: var(--crema);
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--color-naranja);
+  border-radius: 0.75rem;
+  color: var(--color-surface-text);
+  background-color: var(--color-card-bg);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-turquesa);
+  box-shadow: 0 0 0 2px rgba(0, 151, 178, 0.2);
 }
 
 fieldset {
-  border: 1px solid var(--gris-asfalto);
-  border-radius: 6px;
+  border: 1px solid rgba(153, 40, 0, 0.3);
+  border-radius: 0.75rem;
   padding: 1rem;
   margin-bottom: 1rem;
 }
@@ -124,10 +139,10 @@ fieldset {
 legend {
   float: none;
   width: auto;
-  font-family: var(--fuente-titulos);
+  font-family: var(--font-heading);
   font-weight: 700;
   font-size: 1.1rem;
-  color: var(--azul-noche);
+  color: var(--color-surface-text);
   padding: 0 0.5rem;
 }
 
