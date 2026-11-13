@@ -6,7 +6,7 @@
     <title>HIDE MEAL · AROUND THE EXPERIENCE</title>
     <link rel="stylesheet" href="src/output.css">
 </head>
-<body class="bg-(--color-surface-bg) text-main antialiased selection:bg-ladrillo selection:text-crema custom-scrollbar">
+<body class="bg-(--color-surface-bg) text-main antialiased selection:bg-ladrillo selection:text-crema custom-scrollbar pb-20">
 
     <!-- Header / Navbar -->
     <header class="sticky top-0 z-50 bg-(--color-surface-bg)/95 backdrop-blur-md border-b border-ladrillo/30 transition-colors">
@@ -20,7 +20,7 @@
         </div>
 
         <!-- Botón (Lado Derecho) -->
-        <a href="#" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-4 py-2 rounded-lg text-sm transition-colors shadow-lg">
+        <a href="vende.html" class="bg-naranja hover:bg-ladrillo text-crema font-bold px-4 py-2 rounded-lg text-sm transition-colors shadow-lg">
             Vende con nosotros
         </a>
 
@@ -37,7 +37,7 @@
     </div>
 
     <!-- Main Landing Container -->
-    <main class="space-y-24 md:space-y-32 pb-20">
+    <main class="space-y-24 md:space-y-32 pb-12">
 
 
 
@@ -327,7 +327,13 @@
         </section>
 
     </main>
-            <!--Menú fijo -->
+
+    <!-- Footer con Derechos Reservados -->
+    <footer class="border-t border-ladrillo/30 bg-black/40 py-6 text-center text-xs text-muted">
+        HIDE MEAL · AROUND THE EXPERIENCE © 2026. Todos los derechos reservados.
+    </footer>
+
+    <!-- Menú fijo inferior -->
     <nav aria-label="Navegación principal" class="fixed inset-x-0 bottom-0 z-50 flex h-16 items-center justify-around rounded-t-2xl border-t border-ladrillo/40 bg-black px-4 text-crema shadow-[0_-4px_15px_rgba(0,0,0,0.5)] select-none">
 
         <a href="index.html" class="flex max-w-20 flex-1 flex-col items-center justify-center gap-1 transition-colors hover:text-turquesa text-crema">
@@ -351,12 +357,14 @@
             <span class="text-[11px] leading-none font-bold">Carrito</span>
         </a>
 
-        <a href="mi-cuenta.html" class="flex max-w-20 flex-1 flex-col items-center justify-center gap-1 transition-colors hover:text-turquesa text-crema">
+        <a href="login.html" class="flex max-w-20 flex-1 flex-col items-center justify-center gap-1 transition-colors hover:text-turquesa text-crema">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="size-6 text-naranja" aria-hidden="true">
                 <path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
             </svg>
             <span class="text-[11px] leading-none font-bold">Mi Cuenta</span>
         </a>
+
+    </nav>
 
     <!-- Lógica Easter Egg (Exactamente 7 Clics en la Imagen del Logo) -->
     <script>

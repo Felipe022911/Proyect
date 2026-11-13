@@ -31,19 +31,6 @@
                     <img src="src/img/logo.png" alt="Hide Meal Logo" class="h-full w-auto object-contain hover:scale-105 transition-transform" />
                 </button>
             </div>
-            
-            <label for="menu-toggle-pedido" class="md:hidden flex flex-col gap-1.5 cursor-pointer z-50 p-2">
-                <span class="w-6 h-0.5 bg-[var(--color-surface-text)] transition-all"></span>
-                <span class="w-6 h-0.5 bg-[var(--color-surface-text)] transition-all"></span>
-                <span class="w-6 h-0.5 bg-[var(--color-surface-text)] transition-all"></span>
-            </label>
-            <input type="checkbox" id="menu-toggle-pedido" class="peer hidden" />
-
-            <div class="peer-checked:flex hidden absolute top-full left-0 w-full bg-[var(--color-surface-bg)]/98 backdrop-blur-xl border-b border-ladrillo/40 flex-col p-6 space-y-4 md:hidden shadow-2xl z-40">
-                <a href="index.html#concepto" class="text-main hover:text-turquesa font-semibold text-base py-2 border-b border-ladrillo/20">El Concepto</a>
-                <a href="index.html#experiencias" class="text-main hover:text-turquesa font-semibold text-base py-2 border-b border-ladrillo/20">Experiencias</a>
-                <a href="index.html" class="text-main hover:text-turquesa font-semibold text-base py-2">← Volver al Inicio</a>
-            </div>
         </div>
     </header>
 
@@ -168,9 +155,10 @@
                 <div class="space-y-4">
                     <div>
                         <label class="block text-xs font-semibold text-muted mb-1">Dirección de Entrega <span class="text-naranja">*</span></label>
-                        <div class="flex gap-2">
+                        <!-- MODIFICACIÓN: Cambio a disposición en columna para móviles (w-full) y flex en escritorio (sm:flex-row) -->
+                        <div class="flex flex-col sm:flex-row gap-2">
                             <input type="text" id="direccion" required placeholder="Ingresa tu dirección o abre el mapa para marcarla..." class="w-full bg-surface-card border-[1.5px] border-naranja rounded-xl px-4 py-3 text-sm text-main placeholder:text-muted/50 focus:outline-none focus:border-turquesa transition-all">
-                            <button type="button" onclick="abrirModalMapa()" class="bg-naranja hover:bg-opacity-80 text-crema px-4 py-3 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1 cursor-pointer">
+                            <button type="button" onclick="abrirModalMapa()" class="w-full sm:w-auto justify-center bg-naranja hover:bg-opacity-80 text-crema px-4 py-3 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1 cursor-pointer mt-2 sm:mt-0">
                                 🗺️ Seleccionar en Mapa
                             </button>
                         </div>
